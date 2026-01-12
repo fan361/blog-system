@@ -497,11 +497,10 @@
   <!-- 侧边导航点 -->
   <div class="page-dots" id="pageDots">
     <button class="page-dot active" data-index="0" data-label="首页" aria-label="首页"></button>
-    <button class="page-dot" data-index="1" data-label="精选" aria-label="精选"></button>
-    <button class="page-dot dark" data-index="2" data-label="文章" aria-label="文章"></button>
-    <button class="page-dot dark" data-index="3" data-label="分类" aria-label="分类"></button>
-    <button class="page-dot dark" data-index="4" data-label="订阅" aria-label="订阅"></button>
-    <button class="page-dot dark" data-index="5" data-label="关于" aria-label="关于"></button>
+    <button class="page-dot dark" data-index="1" data-label="文章" aria-label="文章"></button>
+    <button class="page-dot dark" data-index="2" data-label="分类" aria-label="分类"></button>
+    <button class="page-dot dark" data-index="3" data-label="订阅" aria-label="订阅"></button>
+    <button class="page-dot dark" data-index="4" data-label="关于" aria-label="关于"></button>
   </div>
 
   <!-- 全局导航栏 -->
@@ -629,38 +628,8 @@
     </div>
   </section>
 
-  <!-- Section 2: 精选文章 -->
-  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 flex items-center pt-20 relative overflow-hidden" data-section="1">
-    <!-- 装饰元素 -->
-    <div class="floating-orb w-72 h-72 bg-purple-300 -top-20 -right-20" style="animation-delay: 1s;"></div>
-    <div class="floating-orb w-56 h-56 bg-pink-300 bottom-20 -left-20" style="animation-delay: 3s;"></div>
-    <div class="absolute top-1/4 right-10 w-20 h-20 border-2 border-purple-200 rounded-full opacity-40"></div>
-    <div class="absolute bottom-1/3 left-10 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg rotate-45 opacity-20"></div>
-    <div class="w-full px-4 relative z-10">
-      <div class="max-w-5xl mx-auto">
-        <div class="flex items-end justify-between mb-8 reveal">
-          <div>
-            <span class="text-purple-600 font-semibold text-sm tracking-wider uppercase">Featured</span>
-            <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-2 text-slate-800">精选推荐</h2>
-          </div>
-          <a href="#" class="hidden sm:flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors cursor-pointer font-medium group">
-            查看全部
-            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </a>
-        </div>
-        
-        <!-- 三列卡片 - 动态加载 -->
-        <div class="grid md:grid-cols-3 gap-6" id="featuredGrid">
-          <!-- 由 JS 动态填充 -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 3: 文章列表 -->
-  <section class="fullpage-section bg-gradient-to-br from-white via-blue-50 to-cyan-50 flex items-center pt-20 relative overflow-hidden" data-section="2">
+  <!-- Section 2: 文章列表 -->
+  <section class="fullpage-section bg-gradient-to-br from-white via-blue-50 to-cyan-50 flex items-center pt-20 relative overflow-hidden" data-section="1">
     <!-- 装饰元素 -->
     <div class="floating-orb w-64 h-64 bg-blue-200 -top-10 left-1/4" style="animation-delay: 2s;"></div>
     <div class="floating-orb w-48 h-48 bg-cyan-200 bottom-10 right-1/4" style="animation-delay: 0s;"></div>
@@ -681,8 +650,8 @@
     </div>
   </section>
 
-  <!-- Section 4: 分类区域 -->
-  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-amber-50 to-orange-50 flex items-center relative overflow-hidden" data-section="3">
+  <!-- Section 3: 分类区域 -->
+  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-amber-50 to-orange-50 flex items-center relative overflow-hidden" data-section="2">
     <!-- 装饰元素 -->
     <div class="floating-orb w-80 h-80 bg-amber-200 -top-32 -left-32" style="animation-delay: 1.5s;"></div>
     <div class="floating-orb w-60 h-60 bg-orange-200 bottom-0 right-0" style="animation-delay: 3.5s;"></div>
@@ -757,8 +726,8 @@
     </div>
   </section>
 
-  <!-- Section 5: 订阅区域 -->
-  <section class="fullpage-section bg-gradient-to-br from-purple-100 via-pink-50 to-rose-100 flex items-center relative overflow-hidden" data-section="4">
+  <!-- Section 4: 订阅区域 -->
+  <section class="fullpage-section bg-gradient-to-br from-purple-100 via-pink-50 to-rose-100 flex items-center relative overflow-hidden" data-section="3">
     <!-- 装饰元素 -->
     <div class="floating-orb w-72 h-72 bg-purple-200 top-10 -right-20" style="animation-delay: 0.5s;"></div>
     <div class="floating-orb w-56 h-56 bg-rose-200 -bottom-10 left-10" style="animation-delay: 2.5s;"></div>
@@ -797,8 +766,8 @@
     </div>
   </section>
 
-  <!-- Section 6: 关于我 -->
-  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 flex items-center relative overflow-hidden" data-section="5">
+  <!-- Section 5: 关于我 -->
+  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 flex items-center relative overflow-hidden" data-section="4">
     <!-- 装饰元素 -->
     <div class="floating-orb w-64 h-64 bg-emerald-200 -top-20 right-1/4" style="animation-delay: 2s;"></div>
     <div class="floating-orb w-52 h-52 bg-teal-200 bottom-32 -left-16" style="animation-delay: 4s;"></div>
@@ -916,16 +885,16 @@
     // 页面映射
     const sectionMap = {
       '#home': 0,
-      '#articles': 2,
-      '#categories': 3,
-      '#subscribe': 4,
-      '#about': 5
+      '#articles': 1,
+      '#categories': 2,
+      '#subscribe': 3,
+      '#about': 4
     };
     const sectionToNav = {
       0: '#home',
-      2: '#articles', 
-      3: '#categories',
-      5: '#about'
+      1: '#articles', 
+      2: '#categories',
+      4: '#about'
     };
 
     // 触发页面内动画
@@ -1092,7 +1061,7 @@
     document.querySelectorAll('a[href="#subscribe"]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        goToSection(4);
+        goToSection(3);
       });
     });
 
@@ -1133,42 +1102,9 @@
     // 动态加载文章卡片
     async function loadArticleCards() {
       const posts = await BlogEngine.loadAllPosts();
-      const featuredGrid = document.getElementById('featuredGrid');
       const articlesGrid = document.getElementById('articlesGrid');
       
-      // 精选区域：前3篇
       const delays = ['delay-100', 'delay-200', 'delay-300'];
-      const featuredHtml = posts.slice(0, 3).map((post, i) => {
-        const path = BlogEngine.POSTS[i];
-        const { meta } = post;
-        const hasCover = meta.cover && meta.cover.trim() !== '';
-        const gradient = meta.color || 'from-slate-400 to-slate-500';
-        
-        const coverHtml = hasCover 
-          ? `<img src="${meta.cover}" alt="${meta.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">`
-          : '';
-        const bgClass = hasCover ? '' : `bg-gradient-to-br ${gradient}`;
-        
-        return `
-          <a href="article.html?post=${path}" class="group bg-white rounded-2xl overflow-hidden shadow-lg card-3d cursor-pointer reveal ${delays[i]} block">
-            <div class="aspect-[4/3] ${bgClass} relative overflow-hidden">
-              ${coverHtml}
-              <div class="absolute inset-0 bg-black/10"></div>
-              <div class="absolute bottom-4 left-4 z-10">
-                <span class="px-3 py-1 bg-white/90 text-xs font-semibold rounded-full ${BlogEngine.getTagColor(meta.tag)}">${meta.tag}</span>
-              </div>
-            </div>
-            <div class="p-5">
-              <p class="text-slate-400 text-sm mb-2">${BlogEngine.formatDate(meta.date)} · ${meta.readTime}分钟</p>
-              <h3 class="font-serif text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors line-clamp-2">
-                ${meta.title}
-              </h3>
-            </div>
-          </a>
-        `;
-      }).join('');
-      
-      featuredGrid.innerHTML = featuredHtml;
       
       // 文章列表：最多6篇
       const articlesHtml = posts.slice(0, 6).map((post, i) => {
