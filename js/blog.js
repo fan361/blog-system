@@ -1,16 +1,20 @@
 // 博客核心逻辑 - 加载和渲染 Markdown 文章
 
-// 文章列表配置（按日期倒序）
-const POSTS = [
-  'posts/2026-01-12-agent-patterns.md',
-  'posts/2026-01-10-ai-design-trends.md',
-  'posts/2026-01-08-vue4-features.md',
-  'posts/2026-01-05-micro-interactions.md',
-  'posts/2026-01-02-winter-health.md',
-  'posts/2025-12-28-color-psychology.md',
-  'posts/2025-12-25-ai-writing.md',
-  'posts/2025-12-20-creator-doubt.md'
-];
+// 文章列表（从 index.json 动态加载）
+let POSTS = [];
+
+// 加载文章列表
+async function loadPostsList() {
+  try {
+    const response = await fetch('posts/index.json');
+    const files = await response.json();
+    POSTS = files.map(f => `posts/${f}`);
+    return POSTS;
+  } catch (e) {
+    console.error('Failed to load posts index:', e);
+    return [];
+  }
+}
 
 // 解析 Markdown front matter
 function parseFrontMatter(content) {
@@ -93,6 +97,9 @@ async function loadPost(path) {
 
 // 加载所有文章
 async function loadAllPosts() {
+  if (POSTS.length === 0) {
+    await loadPostsList();
+  }
   const posts = await Promise.all(POSTS.map(loadPost));
   return posts.filter(p => p !== null);
 }
@@ -194,6 +201,7 @@ function renderArticleCard(post, path, delayClass = '') {
 
 // 导出供页面使用
 window.BlogEngine = {
+  loadPostsList,
   loadAllPosts,
   loadPost,
   markdownToHtml,
@@ -202,5 +210,5 @@ window.BlogEngine = {
   renderCover,
   renderFeaturedCard,
   renderArticleCard,
-  POSTS
+  get POSTS() { return POSTS; }
 };
