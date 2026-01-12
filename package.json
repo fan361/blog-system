@@ -1,0 +1,16 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "个性化个人博客",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "marked": "^12.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

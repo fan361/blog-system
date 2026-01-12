@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>灵感笔记 | Creative Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+    
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Aurora 流动背景 */
+    .aurora-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+      background-size: 400% 400%;
+      animation: aurora 15s ease infinite;
+    }
+    @keyframes aurora {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* 毛玻璃卡片 */
+    .glass {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .glass-dark {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* 渐变文字 */
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* 卡片悬停 */
+    .card-hover {
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
+    }
+
+    /* 文字截断 */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* 浮动装饰球 */
+    .floating-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.6;
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.1); }
+    }
+
+    /* 标签样式 */
+    .tag {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+      border: 1px solid rgba(102, 126, 234, 0.3);
+    }
+
+    /* 导航链接动效 */
+    .nav-link {
+      position: relative;
+      padding: 8px 16px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(236, 72, 153, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .nav-link:hover::before {
+      opacity: 1;
+    }
+    .nav-link:hover {
+      color: #7c3aed;
+    }
+    .nav-link.active {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(236, 72, 153, 0.15));
+      color: #7c3aed;
+    }
+
+    /* 导航图标 */
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+    .nav-link:hover .nav-icon {
+      transform: translateY(-2px);
+    }
+
+    /* 搜索框 */
+    .search-box {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+    .search-box:focus-within {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: #a78bfa;
+      box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+    }
+
+    /* 丝滑滚动 */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* 导航栏动态效果 */
+    .navbar {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+    }
+
+    /* 滚动触发动画 - 使用 animation 替代 transition */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    .reveal.active {
+      animation: revealUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+    .reveal-left.active {
+      animation: revealLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes revealLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    .reveal-right.active {
+      animation: revealRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes revealRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    .reveal-scale.active {
+      animation: revealScale 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes revealScale {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* 延迟动画 */
+    .delay-100.active { animation-delay: 0.1s; }
+    .delay-200.active { animation-delay: 0.2s; }
+    .delay-300.active { animation-delay: 0.3s; }
+    .delay-400.active { animation-delay: 0.4s; }
+    .delay-500.active { animation-delay: 0.5s; }
+
+    /* 闪烁光效 */
+    .shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+
+    /* 脉冲环 */
+    .pulse-ring {
+      position: relative;
+    }
+    .pulse-ring::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: inherit;
+      border: 2px solid currentColor;
+      opacity: 0;
+      animation: pulseRing 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+
+    /* 悬浮卡片 3D 效果 */
+    .card-3d {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-3d:hover {
+      transform: translateY(-12px) rotateX(5deg);
+    }
+
+    /* 进度条 */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+      z-index: 9999;
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    /* 光标跟随光晕 */
+    .cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+    }
+
+    /* 文字渐入 */
+    .fade-up {
+      animation: fadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 弹性按钮 */
+    .btn-bounce:hover {
+      animation: btnBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes btnBounce {
+      0%, 100% { transform: scale(1); }
+      30% { transform: scale(1.1); }
+      50% { transform: scale(0.95); }
+      70% { transform: scale(1.05); }
+    }
+
+    /* 波纹效果 */
+    .ripple {
+      position: relative;
+      overflow: hidden;
+    }
+    .ripple::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .ripple:active::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* 图标旋转 */
+    .icon-spin:hover svg {
+      animation: iconSpin 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.2); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    /* 数字滚动 */
+    .counter {
+      display: inline-block;
+    }
+
+    /* 全屏滚动 */
+    .fullpage-container {
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .fullpage-wrapper {
+      transition: transform 0.45s cubic-bezier(0.645, 0.045, 0.355, 1);
+      will-change: transform;
+    }
+    .fullpage-section {
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .fullpage-section.scrollable {
+      overflow-y: auto;
+    }
+
+    /* 侧边导航点 */
+    .page-dots {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .page-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .page-dot::before {
+      content: attr(data-label);
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 500;
+      color: white;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 4px 12px;
+      border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(-50%) translateX(10px);
+    }
+    .page-dot:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+    .page-dot:hover {
+      transform: scale(1.3);
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .page-dot.active {
+      background: linear-gradient(135deg, #667eea, #f093fb);
+      border-color: white;
+      transform: scale(1.3);
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+    }
+    .page-dot.dark {
+      background: rgba(0, 0, 0, 0.2);
+      border-color: rgba(0, 0, 0, 0.3);
+    }
+    .page-dot.dark:hover {
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .page-dot.dark.active {
+      background: linear-gradient(135deg, #667eea, #f093fb);
+      border-color: #667eea;
+    }
+    .page-dot.dark::before {
+      color: white;
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    /* 滚动提示 */
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint-mouse {
+      width: 24px;
+      height: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
+      position: relative;
+    }
+    .scroll-hint-mouse::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 8px;
+      background: white;
+      border-radius: 2px;
+      animation: scrollWheel 2s infinite;
+    }
+    @keyframes scrollWheel {
+      0%, 100% { opacity: 1; top: 8px; }
+      50% { opacity: 0.3; top: 20px; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 overflow-hidden">
+
+  <!-- 滚动进度条 -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  
+  <!-- 光标跟随光晕 -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- 侧边导航点 -->
+  <div class="page-dots" id="pageDots">
+    <button class="page-dot active" data-index="0" data-label="首页" aria-label="首页"></button>
+    <button class="page-dot" data-index="1" data-label="精选" aria-label="精选"></button>
+    <button class="page-dot dark" data-index="2" data-label="文章" aria-label="文章"></button>
+    <button class="page-dot dark" data-index="3" data-label="分类" aria-label="分类"></button>
+    <button class="page-dot dark" data-index="4" data-label="订阅" aria-label="订阅"></button>
+    <button class="page-dot dark" data-index="5" data-label="关于" aria-label="关于"></button>
+  </div>
+
+  <!-- 全局导航栏 -->
+  <nav class="navbar fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl mx-auto px-4">
+    <div class="glass rounded-2xl shadow-lg shadow-purple-500/10 px-6 py-3 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 cursor-pointer group" onclick="goToSection(0)">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+          </svg>
+        </div>
+        <span class="font-serif text-xl font-bold gradient-text hidden sm:block">灵感笔记</span>
+      </a>
+
+      <!-- 中间导航 -->
+      <div class="hidden md:flex items-center gap-1 bg-white/50 backdrop-blur rounded-xl p-1.5">
+        <a href="#home" class="nav-link active flex items-center gap-2 text-sm font-medium cursor-pointer">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          首页
+        </a>
+        <a href="#articles" class="nav-link flex items-center gap-2 text-sm text-slate-600 font-medium cursor-pointer">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+          </svg>
+          文章
+        </a>
+        <a href="#categories" class="nav-link flex items-center gap-2 text-sm text-slate-600 font-medium cursor-pointer">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+          </svg>
+          分类
+        </a>
+        <a href="#about" class="nav-link flex items-center gap-2 text-sm text-slate-600 font-medium cursor-pointer">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          关于
+        </a>
+      </div>
+
+      <!-- 订阅按钮 -->
+      <a href="#subscribe" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer shadow-lg shadow-purple-500/30 hover:shadow-xl btn-bounce shimmer ripple">
+        订阅
+      </a>
+
+      <!-- 移动端菜单按钮 -->
+      <button class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white/50 text-slate-700 cursor-pointer hover:bg-white/80 transition-colors" aria-label="菜单">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 全屏滚动容器 -->
+  <div class="fullpage-container" id="fullpageContainer">
+    <div class="fullpage-wrapper" id="fullpageWrapper">
+
+      <!-- Section 1: Hero -->
+      <section class="fullpage-section aurora-bg relative" data-section="0">
+    <!-- 装饰性浮动球 -->
+    <div class="floating-orb w-96 h-96 bg-pink-400 top-20 -left-48 parallax" style="animation-delay: 0s;"></div>
+    <div class="floating-orb w-80 h-80 bg-purple-500 top-40 right-10 parallax" style="animation-delay: 2s;"></div>
+    <div class="floating-orb w-64 h-64 bg-blue-400 bottom-20 left-1/3 parallax" style="animation-delay: 4s;"></div>
+
+    <!-- Hero Content -->
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 pt-24 relative z-10">
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <div class="inline-flex items-center gap-2 glass-dark px-4 py-2 rounded-full mb-8 fade-up" style="animation-delay: 0.2s;">
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          <span class="text-sm font-medium text-white/90">每周更新中</span>
+        </div>
+        <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-bold leading-tight mb-8 drop-shadow-lg fade-up" style="animation-delay: 0.4s;">
+          记录生活<br>
+          <span class="italic">分享灵感</span>
+        </h1>
+        <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed text-white/90 fade-up" style="animation-delay: 0.6s;">
+          在这里，我用文字捕捉每一个闪光的瞬间。<br>
+          关于技术、设计、生活，以及一切美好的事物。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center fade-up" style="animation-delay: 0.8s;">
+          <a href="#articles" class="inline-flex items-center justify-center gap-2 bg-white text-purple-700 px-8 py-4 rounded-full font-semibold transition-all cursor-pointer shadow-xl btn-bounce ripple shimmer">
+            开始探索
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+          </a>
+          <a href="#about" class="inline-flex items-center justify-center gap-2 glass-dark text-white px-8 py-4 rounded-full font-semibold transition-all cursor-pointer hover:bg-white/20 ripple">
+            认识我
+          </a>
+        </div>
+
+        <!-- 统计数据 -->
+        <div class="flex justify-center gap-12 mt-16 fade-up" style="animation-delay: 1s;">
+          <div class="text-center">
+            <p class="text-4xl font-bold counter" data-target="68">0</p>
+            <p class="text-sm text-white/70">篇文章</p>
+          </div>
+          <div class="text-center">
+            <p class="text-4xl font-bold">12K</p>
+            <p class="text-sm text-white/70">读者</p>
+          </div>
+          <div class="text-center">
+            <p class="text-4xl font-bold counter" data-target="3">0</p>
+            <p class="text-sm text-white/70">年创作</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 滚动提示 -->
+      <div class="scroll-hint">
+        <div class="scroll-hint-mouse"></div>
+        <span class="text-xs text-white/70">滚动探索</span>
+      </div>
+    </section>
+
+    <!-- 波浪分隔 -->
+    <div class="absolute bottom-0 left-0 right-0 z-10">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f8fafc"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Section 2: 精选文章 -->
+  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 flex items-center pt-20 relative overflow-hidden" data-section="1">
+    <!-- 装饰元素 -->
+    <div class="floating-orb w-72 h-72 bg-purple-300 -top-20 -right-20" style="animation-delay: 1s;"></div>
+    <div class="floating-orb w-56 h-56 bg-pink-300 bottom-20 -left-20" style="animation-delay: 3s;"></div>
+    <div class="absolute top-1/4 right-10 w-20 h-20 border-2 border-purple-200 rounded-full opacity-40"></div>
+    <div class="absolute bottom-1/3 left-10 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg rotate-45 opacity-20"></div>
+    <div class="w-full px-4 relative z-10">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-end justify-between mb-8 reveal">
+          <div>
+            <span class="text-purple-600 font-semibold text-sm tracking-wider uppercase">Featured</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-2 text-slate-800">精选推荐</h2>
+          </div>
+          <a href="#" class="hidden sm:flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors cursor-pointer font-medium group">
+            查看全部
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- 三列卡片 - 动态加载 -->
+        <div class="grid md:grid-cols-3 gap-6" id="featuredGrid">
+          <!-- 由 JS 动态填充 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: 文章列表 -->
+  <section class="fullpage-section bg-gradient-to-br from-white via-blue-50 to-cyan-50 flex items-center pt-20 relative overflow-hidden" data-section="2">
+    <!-- 装饰元素 -->
+    <div class="floating-orb w-64 h-64 bg-blue-200 -top-10 left-1/4" style="animation-delay: 2s;"></div>
+    <div class="floating-orb w-48 h-48 bg-cyan-200 bottom-10 right-1/4" style="animation-delay: 0s;"></div>
+    <div class="absolute top-20 right-20 w-16 h-16 border-2 border-blue-200 rounded-2xl rotate-12 opacity-40"></div>
+    <div class="absolute bottom-1/4 left-16 w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-30"></div>
+    <div class="absolute top-1/3 left-8 w-24 h-1 bg-gradient-to-r from-blue-300 to-transparent rounded-full opacity-50"></div>
+    <div class="w-full px-4 relative z-10">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-8 reveal">
+          <span class="text-purple-600 font-semibold text-sm tracking-wider uppercase">Latest Posts</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-2 text-slate-800">最新文章</h2>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" id="articlesGrid">
+          <!-- 由 JS 动态填充 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: 分类区域 -->
+  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-amber-50 to-orange-50 flex items-center relative overflow-hidden" data-section="3">
+    <!-- 装饰元素 -->
+    <div class="floating-orb w-80 h-80 bg-amber-200 -top-32 -left-32" style="animation-delay: 1.5s;"></div>
+    <div class="floating-orb w-60 h-60 bg-orange-200 bottom-0 right-0" style="animation-delay: 3.5s;"></div>
+    <div class="absolute top-1/4 right-16 w-14 h-14 border-2 border-amber-300 rounded-xl rotate-45 opacity-40"></div>
+    <div class="absolute bottom-1/3 left-20 w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-400 rounded-lg opacity-25"></div>
+    <div class="absolute top-1/2 right-8 w-6 h-6 bg-orange-300 rounded-full opacity-40"></div>
+    <div class="w-full px-4 relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <span class="text-purple-600 font-semibold text-sm tracking-wider uppercase">Categories</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-bold mt-2 text-slate-800">探索分类</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <a href="#" class="group relative overflow-hidden rounded-3xl aspect-square cursor-pointer reveal-scale delay-100">
+            <div class="absolute inset-0 bg-gradient-to-br from-violet-500 to-purple-600 transition-transform group-hover:scale-110 duration-500"></div>
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="relative h-full p-6 flex flex-col justify-between text-white">
+              <svg class="w-10 h-10 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+            <div>
+              <h3 class="font-serif text-2xl font-bold mb-1">技术</h3>
+              <p class="text-white/70 text-sm">24 篇文章</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="group relative overflow-hidden rounded-3xl aspect-square cursor-pointer reveal-scale delay-200">
+          <div class="absolute inset-0 bg-gradient-to-br from-pink-500 to-rose-500 transition-transform group-hover:scale-110 duration-500"></div>
+          <div class="absolute inset-0 bg-black/20"></div>
+          <div class="relative h-full p-6 flex flex-col justify-between text-white">
+            <svg class="w-10 h-10 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+            </svg>
+            <div>
+              <h3 class="font-serif text-2xl font-bold mb-1">设计</h3>
+              <p class="text-white/70 text-sm">18 篇文章</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="group relative overflow-hidden rounded-3xl aspect-square cursor-pointer reveal-scale delay-300">
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-500 transition-transform group-hover:scale-110 duration-500"></div>
+          <div class="absolute inset-0 bg-black/20"></div>
+          <div class="relative h-full p-6 flex flex-col justify-between text-white">
+            <svg class="w-10 h-10 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            <div>
+              <h3 class="font-serif text-2xl font-bold mb-1">效率</h3>
+              <p class="text-white/70 text-sm">12 篇文章</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="group relative overflow-hidden rounded-3xl aspect-square cursor-pointer reveal-scale delay-400">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-500 transition-transform group-hover:scale-110 duration-500"></div>
+          <div class="absolute inset-0 bg-black/20"></div>
+          <div class="relative h-full p-6 flex flex-col justify-between text-white">
+            <svg class="w-10 h-10 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <div>
+              <h3 class="font-serif text-2xl font-bold mb-1">生活</h3>
+              <p class="text-white/70 text-sm">15 篇文章</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Section 5: 订阅区域 -->
+  <section class="fullpage-section bg-gradient-to-br from-purple-100 via-pink-50 to-rose-100 flex items-center relative overflow-hidden" data-section="4">
+    <!-- 装饰元素 -->
+    <div class="floating-orb w-72 h-72 bg-purple-200 top-10 -right-20" style="animation-delay: 0.5s;"></div>
+    <div class="floating-orb w-56 h-56 bg-rose-200 -bottom-10 left-10" style="animation-delay: 2.5s;"></div>
+    <div class="absolute top-1/3 left-12 w-16 h-16 border-2 border-pink-300 rounded-full opacity-40"></div>
+    <div class="absolute bottom-1/4 right-20 w-12 h-12 bg-gradient-to-br from-purple-400 to-rose-400 rounded-2xl rotate-12 opacity-20"></div>
+    <div class="absolute top-20 left-1/3 w-4 h-4 bg-pink-400 rounded-full opacity-50"></div>
+    <div class="w-full px-4 relative z-10">
+      <div class="max-w-4xl mx-auto reveal-scale">
+        <div class="relative overflow-hidden rounded-[2.5rem] aurora-bg p-1">
+          <div class="bg-white rounded-[2.25rem] p-8 sm:p-12 text-center relative overflow-hidden">
+            <div class="floating-orb w-64 h-64 bg-purple-300 -top-32 -right-32" style="filter: blur(80px); opacity: 0.4;"></div>
+            <div class="floating-orb w-48 h-48 bg-pink-300 -bottom-24 -left-24" style="filter: blur(60px); opacity: 0.4;"></div>
+            
+            <div class="relative z-10">
+              <span class="inline-block px-4 py-1.5 bg-purple-100 text-purple-700 text-sm font-semibold rounded-full mb-6">Newsletter</span>
+              <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-4 text-slate-800">订阅我的周刊</h2>
+              <p class="text-slate-500 mb-8 max-w-lg mx-auto">
+                每周精选文章、工具推荐和独家思考，直达你的邮箱。
+              </p>
+              <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input 
+                type="email" 
+                placeholder="your@email.com" 
+                class="flex-1 px-6 py-4 bg-slate-100 border-2 border-transparent rounded-full text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-purple-500 focus:bg-white transition-all"
+                aria-label="邮箱地址"
+              >
+              <button type="submit" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white rounded-full font-semibold transition-all cursor-pointer shadow-lg shadow-purple-500/30 whitespace-nowrap btn-bounce ripple shimmer">
+                立即订阅
+              </button>
+            </form>
+            <p class="text-slate-400 text-sm mt-6">已有 2,000+ 订阅者 · 随时可取消</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Section 6: 关于我 -->
+  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 flex items-center relative overflow-hidden" data-section="5">
+    <!-- 装饰元素 -->
+    <div class="floating-orb w-64 h-64 bg-emerald-200 -top-20 right-1/4" style="animation-delay: 2s;"></div>
+    <div class="floating-orb w-52 h-52 bg-teal-200 bottom-32 -left-16" style="animation-delay: 4s;"></div>
+    <div class="absolute top-24 left-16 w-12 h-12 border-2 border-emerald-300 rounded-lg rotate-12 opacity-40"></div>
+    <div class="absolute top-1/3 right-12 w-8 h-8 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full opacity-30"></div>
+    <div class="absolute bottom-1/2 right-1/4 w-20 h-1 bg-gradient-to-r from-teal-300 to-transparent rounded-full opacity-40"></div>
+    <div class="w-full px-4 relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="relative reveal-left">
+            <div class="aspect-square max-w-md mx-auto rounded-[2.5rem] overflow-hidden relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400"></div>
+              <div class="absolute inset-4 bg-white rounded-[2rem] flex items-center justify-center">
+                <div class="text-center">
+                  <div class="w-28 h-28 mx-auto rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4">
+                    <span class="font-serif text-4xl font-bold text-white">你</span>
+                  </div>
+                  <p class="text-slate-400 text-sm">你的照片</p>
+                </div>
+              </div>
+            </div>
+            <!-- 装饰元素 -->
+          <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl -z-10"></div>
+          <div class="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl -z-10"></div>
+        </div>
+
+        <div class="reveal-right">
+          <span class="text-purple-600 font-semibold text-sm tracking-wider uppercase">About Me</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-bold mt-2 mb-6 text-slate-800">你好，我是...</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            一个热爱创造的开发者和设计师。我相信技术与美学的结合能够创造出改变世界的产品。
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            在这个博客里，我分享我的学习笔记、项目经验、以及对生活的思考。希望我的文字能给你带来一些启发和帮助。
+          </p>
+          
+          <div class="flex flex-wrap gap-3 mb-8">
+            <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">前端开发</span>
+            <span class="px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">UI/UX 设计</span>
+            <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">产品思维</span>
+            <span class="px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">效率工具</span>
+          </div>
+
+          <div class="flex gap-4">
+            <a href="#" class="w-12 h-12 bg-slate-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all cursor-pointer group icon-spin pulse-ring" aria-label="GitHub">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-12 h-12 bg-slate-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all cursor-pointer icon-spin pulse-ring" aria-label="Twitter">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-12 h-12 bg-slate-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all cursor-pointer icon-spin pulse-ring" aria-label="微信">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-12 h-12 bg-slate-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all cursor-pointer icon-spin pulse-ring" aria-label="Email">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Footer 嵌入在关于我页面底部 -->
+    <div class="absolute bottom-0 left-0 right-0 bg-slate-900 text-white py-6 px-4">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-slate-400 text-sm">© 2026 灵感笔记. Made with ❤️</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors cursor-pointer">GitHub</a>
+          <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors cursor-pointer">Twitter</a>
+          <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors cursor-pointer">Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    </div>
+  </div>
+
+  <!-- 返回顶部 -->
+  <button 
+    onclick="goToSection(0)"
+    class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full shadow-lg shadow-purple-500/40 flex items-center justify-center transition-all cursor-pointer z-40 hover:scale-110 hover:shadow-xl btn-bounce opacity-0 translate-y-10"
+    id="backToTop"
+    aria-label="返回顶部"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+    </svg>
+  </button>
+
+  <script>
+    // 获取所有需要的 DOM 元素
+    const wrapper = document.getElementById('fullpageWrapper');
+    const sections = document.querySelectorAll('.fullpage-section');
+    const dots = document.querySelectorAll('.page-dot');
+    const scrollProgress = document.getElementById('scrollProgress');
+    const cursorGlow = document.getElementById('cursorGlow');
+    const navbar = document.querySelector('.navbar');
+    const backToTop = document.getElementById('backToTop');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    const totalSections = sections.length;
+    let currentSection = 0;
+    let isScrolling = false;
+    let touchStartY = 0;
+
+    // 页面映射
+    const sectionMap = {
+      '#home': 0,
+      '#articles': 2,
+      '#categories': 3,
+      '#subscribe': 4,
+      '#about': 5
+    };
+    const sectionToNav = {
+      0: '#home',
+      2: '#articles', 
+      3: '#categories',
+      5: '#about'
+    };
+
+    // 触发页面内动画
+    function triggerAnimations(index) {
+      const section = sections[index];
+      if (!section) return;
+      
+      const reveals = section.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      
+      // 强制重绘：先移除 class，强制浏览器重新计算样式，再添加
+      reveals.forEach(el => {
+        el.classList.remove('active');
+        // 强制重绘
+        void el.offsetWidth;
+      });
+      
+      // 使用 setTimeout 确保浏览器有时间处理移除操作
+      setTimeout(() => {
+        reveals.forEach(el => {
+          el.classList.add('active');
+        });
+      }, 50);
+      
+      // 数字动画 - 每次都重新播放
+      const counters = section.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        if (!target) return;
+        counter.textContent = '0';
+        let current = 0;
+        const increment = target / 40;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            counter.textContent = target;
+            clearInterval(timer);
+          } else {
+            counter.textContent = Math.floor(current);
+          }
+        }, 25);
+      });
+    }
+
+    // 更新导航栏激活状态
+    function updateNavLinks() {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === sectionToNav[currentSection]) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    // 滚动到指定页面
+    function goToSection(index) {
+      if (index < 0 || index >= totalSections || isScrolling) return;
+      
+      isScrolling = true;
+      currentSection = index;
+      
+      // 移动页面
+      wrapper.style.transform = `translateY(-${index * 100}vh)`;
+      
+      // 更新导航点
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      
+      // 更新进度条
+      const progress = index / (totalSections - 1);
+      scrollProgress.style.transform = `scaleX(${progress})`;
+      
+      // 更新返回顶部按钮
+      if (index > 0) {
+        backToTop.style.opacity = '1';
+        backToTop.style.transform = 'translateY(0)';
+      } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.transform = 'translateY(40px)';
+      }
+
+      // 更新导航栏
+      updateNavLinks();
+
+      // 触发当前页面的动画
+      triggerAnimations(index);
+      
+      // 防止连续滚动
+      setTimeout(() => {
+        isScrolling = false;
+      }, 500);
+    }
+
+    // 鼠标滚轮事件
+    let wheelTimeout;
+    document.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      
+      clearTimeout(wheelTimeout);
+      wheelTimeout = setTimeout(() => {
+        if (e.deltaY > 0) {
+          goToSection(currentSection + 1);
+        } else {
+          goToSection(currentSection - 1);
+        }
+      }, 50);
+    }, { passive: false });
+
+    // 触摸事件（移动端）
+    document.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      const touchEndY = e.changedTouches[0].clientY;
+      const diff = touchStartY - touchEndY;
+      
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goToSection(currentSection + 1);
+        } else {
+          goToSection(currentSection - 1);
+        }
+      }
+    }, { passive: true });
+
+    // 键盘事件
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        e.preventDefault();
+        goToSection(currentSection + 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        goToSection(currentSection - 1);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSection(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSection(totalSections - 1);
+      }
+    });
+
+    // 导航点点击
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.index);
+        goToSection(index);
+      });
+    });
+
+    // 导航栏链接点击
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (sectionMap[href] !== undefined) {
+          goToSection(sectionMap[href]);
+        }
+      });
+    });
+
+    // 订阅按钮点击
+    document.querySelectorAll('a[href="#subscribe"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToSection(4);
+      });
+    });
+
+    // 光标跟随效果
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateGlow() {
+      glowX += (mouseX - glowX) * 0.1;
+      glowY += (mouseY - glowY) * 0.1;
+      cursorGlow.style.left = glowX + 'px';
+      cursorGlow.style.top = glowY + 'px';
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // 初始化第一页动画
+    triggerAnimations(0);
+
+    // 检查是否从文章页返回，需要跳转到指定 section
+    const savedSection = sessionStorage.getItem('goToSection');
+    if (savedSection) {
+      sessionStorage.removeItem('goToSection');
+      setTimeout(() => {
+        goToSection(parseInt(savedSection));
+      }, 100);
+    }
+  </script>
+
+  <!-- 博客引擎 -->
+  <script src="js/blog.js"></script>
+  <script>
+    // 动态加载文章卡片
+    async function loadArticleCards() {
+      const posts = await BlogEngine.loadAllPosts();
+      const featuredGrid = document.getElementById('featuredGrid');
+      const articlesGrid = document.getElementById('articlesGrid');
+      
+      // 精选区域：前3篇
+      const delays = ['delay-100', 'delay-200', 'delay-300'];
+      const featuredHtml = posts.slice(0, 3).map((post, i) => {
+        const path = BlogEngine.POSTS[i];
+        const { meta } = post;
+        const hasCover = meta.cover && meta.cover.trim() !== '';
+        const gradient = meta.color || 'from-slate-400 to-slate-500';
+        
+        const coverHtml = hasCover 
+          ? `<img src="${meta.cover}" alt="${meta.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">`
+          : '';
+        const bgClass = hasCover ? '' : `bg-gradient-to-br ${gradient}`;
+        
+        return `
+          <a href="article.html?post=${path}" class="group bg-white rounded-2xl overflow-hidden shadow-lg card-3d cursor-pointer reveal ${delays[i]} block">
+            <div class="aspect-[4/3] ${bgClass} relative overflow-hidden">
+              ${coverHtml}
+              <div class="absolute inset-0 bg-black/10"></div>
+              <div class="absolute bottom-4 left-4 z-10">
+                <span class="px-3 py-1 bg-white/90 text-xs font-semibold rounded-full ${BlogEngine.getTagColor(meta.tag)}">${meta.tag}</span>
+              </div>
+            </div>
+            <div class="p-5">
+              <p class="text-slate-400 text-sm mb-2">${BlogEngine.formatDate(meta.date)} · ${meta.readTime}分钟</p>
+              <h3 class="font-serif text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors line-clamp-2">
+                ${meta.title}
+              </h3>
+            </div>
+          </a>
+        `;
+      }).join('');
+      
+      featuredGrid.innerHTML = featuredHtml;
+      
+      // 文章列表：最多6篇
+      const articlesHtml = posts.slice(0, 6).map((post, i) => {
+        const path = BlogEngine.POSTS[i];
+        const { meta } = post;
+        const hasCover = meta.cover && meta.cover.trim() !== '';
+        const gradient = meta.color || 'from-slate-400 to-slate-500';
+        const delay = delays[i % 3];
+        
+        const coverHtml = hasCover 
+          ? `<img src="${meta.cover}" alt="${meta.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">`
+          : '';
+        const bgClass = hasCover ? '' : `bg-gradient-to-br ${gradient}`;
+        
+        return `
+          <a href="article.html?post=${path}" class="group bg-slate-50 rounded-xl overflow-hidden card-3d cursor-pointer border border-slate-100 reveal ${delay} block">
+            <div class="aspect-[3/2] ${bgClass} relative overflow-hidden">
+              ${coverHtml}
+              <div class="absolute bottom-3 left-3 z-10">
+                <span class="px-2 py-1 bg-white/90 text-xs font-semibold rounded-full ${BlogEngine.getTagColor(meta.tag)}">${meta.tag}</span>
+              </div>
+            </div>
+            <div class="p-4">
+              <p class="text-slate-400 text-xs mb-1">${BlogEngine.formatDate(meta.date)}</p>
+              <h3 class="font-serif text-base font-bold text-slate-800 group-hover:text-purple-600 transition-colors line-clamp-2">
+                ${meta.title}
+              </h3>
+            </div>
+          </a>
+        `;
+      }).join('');
+      
+      articlesGrid.innerHTML = articlesHtml;
+    }
+    
+    // 页面加载时执行
+    loadArticleCards();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章 | 灵感笔记</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <!-- 代码高亮 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* 代码块样式 */
+    pre {
+      background: #0d1117;
+      border-radius: 0.75rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    pre code {
+      display: block;
+      padding: 1.25rem;
+      font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+    pre::before {
+      content: attr(data-lang);
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.7rem;
+      color: #8b949e;
+      background: rgba(255,255,255,0.05);
+      border-radius: 0 0.75rem 0 0.5rem;
+      text-transform: uppercase;
+    }
+    
+    /* 行内代码 */
+    code:not(pre code) {
+      background: #f1f5f9;
+      color: #7c3aed;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.375rem;
+      font-size: 0.875em;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* 文章内容样式 */
+    .article-content h1 { font-size: 2rem; font-weight: 700; margin: 2rem 0 1rem; color: #1e293b; }
+    .article-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.75rem 0 0.75rem; color: #1e293b; }
+    .article-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: #334155; }
+    .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #475569; }
+    .article-content ul, .article-content ol { margin: 1rem 0; padding-left: 1.5rem; }
+    .article-content li { margin-bottom: 0.5rem; color: #475569; line-height: 1.7; }
+    .article-content ul li { list-style-type: disc; }
+    .article-content ol li { list-style-type: decimal; }
+    .article-content blockquote {
+      border-left: 4px solid #a78bfa;
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      background: #f8fafc;
+      border-radius: 0 0.5rem 0.5rem 0;
+      color: #64748b;
+      font-style: italic;
+    }
+    .article-content strong { font-weight: 600; color: #1e293b; }
+    .article-content a { color: #7c3aed; text-decoration: underline; }
+    .article-content a:hover { color: #6d28d9; }
+    .article-content hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 min-h-screen">
+  
+  <!-- 导航栏 -->
+  <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-3xl mx-auto px-4">
+    <div class="glass rounded-2xl shadow-lg shadow-purple-500/10 px-6 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+          </svg>
+        </div>
+        <span class="font-serif text-xl font-bold gradient-text">灵感笔记</span>
+      </a>
+      <a href="index.html" class="text-slate-600 hover:text-purple-600 transition-colors flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        返回首页
+      </a>
+    </div>
+  </nav>
+
+  <!-- 文章内容 -->
+  <main class="pt-32 pb-20 px-4">
+    <article class="max-w-3xl mx-auto">
+      <!-- 文章封面图 -->
+      <div class="mb-8 rounded-2xl overflow-hidden shadow-lg hidden" id="articleCover">
+        <img src="" alt="" class="w-full aspect-[2/1] object-cover" id="coverImage">
+      </div>
+      
+      <!-- 文章头部 -->
+      <header class="mb-12 text-center" id="articleHeader">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <span class="px-3 py-1 rounded-full text-sm font-medium" id="articleTag">加载中...</span>
+          <span class="text-slate-400" id="articleDate"></span>
+          <span class="text-slate-400">·</span>
+          <span class="text-slate-400" id="articleReadTime"></span>
+        </div>
+        <h1 class="font-serif text-4xl sm:text-5xl font-bold text-slate-800 mb-6" id="articleTitle">加载中...</h1>
+      </header>
+
+      <!-- 文章正文 -->
+      <div class="article-content" id="articleContent">
+        <p class="text-slate-500">正在加载文章内容...</p>
+      </div>
+
+      <!-- 文章底部 -->
+      <footer class="mt-16 pt-8 border-t border-slate-200">
+        <!-- 返回分类 -->
+        <div class="mb-8 flex items-center gap-3" id="backToCategory">
+          <span class="text-slate-500">返回分类：</span>
+          <a href="#" id="categoryLink" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+            </svg>
+            <span id="categoryName">分类</span>
+          </a>
+        </div>
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+              你
+            </div>
+            <div>
+              <p class="font-medium text-slate-800">作者名</p>
+              <p class="text-sm text-slate-500">热爱创造的开发者</p>
+            </div>
+          </div>
+          <a href="index.html" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full font-medium hover:shadow-lg transition-shadow">
+            查看更多文章
+          </a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script src="js/blog.js"></script>
+  <script>
+    // 分类颜色和链接映射
+    const categoryStyles = {
+      '精选': { bg: 'bg-purple-100', text: 'text-purple-700', section: 1 },
+      '技术': { bg: 'bg-blue-100', text: 'text-blue-700', section: 3 },
+      '设计': { bg: 'bg-pink-100', text: 'text-pink-700', section: 3 },
+      '生活': { bg: 'bg-teal-100', text: 'text-teal-700', section: 3 },
+      '效率': { bg: 'bg-orange-100', text: 'text-orange-700', section: 3 },
+      'AI': { bg: 'bg-sky-100', text: 'text-sky-700', section: 3 },
+      '思考': { bg: 'bg-indigo-100', text: 'text-indigo-700', section: 3 }
+    };
+
+    // 从 URL 获取文章路径
+    const params = new URLSearchParams(window.location.search);
+    const postPath = params.get('post');
+
+    if (postPath) {
+      BlogEngine.loadPost(postPath).then(post => {
+        if (post) {
+          document.getElementById('articleTitle').textContent = post.meta.title;
+          document.getElementById('articleDate').textContent = BlogEngine.formatDate(post.meta.date);
+          document.getElementById('articleReadTime').textContent = post.meta.readTime + ' 分钟阅读';
+          
+          const tagEl = document.getElementById('articleTag');
+          tagEl.textContent = post.meta.tag;
+          tagEl.className = `px-3 py-1 rounded-full text-sm font-medium ${BlogEngine.getTagColor(post.meta.tag)}`;
+          
+          // 显示封面图（如果有）
+          if (post.meta.cover && post.meta.cover.trim() !== '') {
+            const coverContainer = document.getElementById('articleCover');
+            const coverImage = document.getElementById('coverImage');
+            coverImage.src = post.meta.cover;
+            coverImage.alt = post.meta.title;
+            coverContainer.classList.remove('hidden');
+          }
+          
+          // 渲染文章内容
+          document.getElementById('articleContent').innerHTML = BlogEngine.markdownToHtml(post.content);
+          
+          // 代码高亮
+          document.querySelectorAll('pre code').forEach(block => {
+            hljs.highlightElement(block);
+            // 添加语言标签
+            const lang = block.className.match(/language-(\w+)/);
+            if (lang) {
+              block.parentElement.setAttribute('data-lang', lang[1]);
+            }
+          });
+          
+          // 设置分类返回链接
+          const tag = post.meta.tag;
+          const style = categoryStyles[tag] || categoryStyles['技术'];
+          const categoryLink = document.getElementById('categoryLink');
+          const categoryName = document.getElementById('categoryName');
+          
+          categoryName.textContent = tag;
+          categoryLink.className = `inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 ${style.bg} ${style.text}`;
+          categoryLink.href = `index.html#section${style.section}`;
+          categoryLink.onclick = (e) => {
+            e.preventDefault();
+            // 跳转到首页对应分类
+            window.location.href = `index.html`;
+            // 存储要跳转的 section
+            sessionStorage.setItem('goToSection', style.section);
+          };
+          
+          document.title = post.meta.title + ' | 灵感笔记';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
