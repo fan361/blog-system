@@ -20,9 +20,11 @@
       }
     }
   </script>
-  <!-- 代码高亮 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <!-- 代码高亮 - 浅色主题 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Markdown 渲染 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     * { font-family: 'Inter', sans-serif; }
     h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
@@ -122,9 +124,10 @@
       50%, 100% { left: 100%; }
     }
 
-    /* 代码块样式 */
+    /* 代码块样式 - 浅色主题 */
     pre {
-      background: #0d1117;
+      background: #f6f8fa;
+      border: 1px solid #e1e4e8;
       border-radius: 0.75rem;
       overflow-x: auto;
       margin: 1.5rem 0;
@@ -136,6 +139,7 @@
       font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
       font-size: 0.875rem;
       line-height: 1.7;
+      background: transparent;
     }
     pre::before {
       content: attr(data-lang);
@@ -144,8 +148,8 @@
       right: 0;
       padding: 0.25rem 0.75rem;
       font-size: 0.7rem;
-      color: #8b949e;
-      background: rgba(255,255,255,0.05);
+      color: #6a737d;
+      background: #e1e4e8;
       border-radius: 0 0.75rem 0 0.5rem;
       text-transform: uppercase;
     }
@@ -162,18 +166,18 @@
 
     /* 文章内容样式 */
     .article-content h1 { font-size: 2rem; font-weight: 700; margin: 2rem 0 1rem; color: #1e293b; }
-    .article-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.75rem 0 0.75rem; color: #1e293b; }
+    .article-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.75rem 0 0.75rem; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
     .article-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: #334155; }
-    .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #475569; }
+    .article-content p { margin-bottom: 1rem; line-height: 1.8; color: #374151; }
     .article-content ul, .article-content ol { margin: 1rem 0; padding-left: 1.5rem; }
-    .article-content li { margin-bottom: 0.5rem; color: #475569; line-height: 1.7; }
+    .article-content li { margin-bottom: 0.25rem; color: #374151; line-height: 1.7; }
     .article-content ul li { list-style-type: disc; }
     .article-content ol li { list-style-type: decimal; }
     .article-content blockquote {
       border-left: 4px solid #a78bfa;
       padding: 1rem 1.5rem;
       margin: 1.5rem 0;
-      background: #f8fafc;
+      background: rgba(167, 139, 250, 0.08);
       border-radius: 0 0.5rem 0.5rem 0;
       color: #64748b;
       font-style: italic;
@@ -182,6 +186,7 @@
     .article-content a { color: #7c3aed; text-decoration: underline; }
     .article-content a:hover { color: #6d28d9; }
     .article-content hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
+    .article-content img { border-radius: 0.5rem; margin: 1.5rem 0; max-width: 100%; height: auto; display: block; }
   </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 min-h-screen">
@@ -236,15 +241,10 @@
   </nav>
 
   <!-- 文章内容 -->
-  <main class="pt-32 pb-20 px-4 page-enter">
-    <article class="max-w-3xl mx-auto">
-      <!-- 文章封面图 -->
-      <div class="mb-8 rounded-2xl overflow-hidden shadow-lg hidden" id="articleCover">
-        <img src="" alt="" class="w-full aspect-[2/1] object-cover" id="coverImage">
-      </div>
-      
+  <main class="pt-32 pb-20 relative z-10 page-enter">
+    <article class="max-w-5xl mx-auto px-8">
       <!-- 文章头部 -->
-      <header class="mb-12 text-center" id="articleHeader">
+      <header class="mb-8 text-center" id="articleHeader">
         <div class="inline-flex items-center gap-2 mb-4">
           <span class="px-3 py-1 rounded-full text-sm font-medium" id="articleTag">加载中...</span>
           <span class="text-slate-400" id="articleDate"></span>
@@ -255,8 +255,10 @@
       </header>
 
       <!-- 文章正文 -->
-      <div class="article-content" id="articleContent">
-        <p class="text-slate-500">正在加载文章内容...</p>
+      <div class="bg-white rounded-2xl shadow-sm p-8 sm:p-12">
+        <div class="article-content" id="articleContent">
+          <p class="text-slate-500">正在加载文章内容...</p>
+        </div>
       </div>
 
       <!-- 文章底部 -->
@@ -292,6 +294,17 @@
 
   <script src="js/blog.js"></script>
   <script>
+    // 配置 marked - 禁用图片渲染
+    const renderer = new marked.Renderer();
+    renderer.image = function(href, title, text) {
+      return ''; // 不渲染图片
+    };
+    marked.setOptions({
+      breaks: true,
+      gfm: true,
+      renderer: renderer
+    });
+
     // 分类颜色和链接映射
     const categoryStyles = {
       '精选': { bg: 'bg-purple-100', text: 'text-purple-700', section: 1 },
@@ -318,17 +331,8 @@
           tagEl.textContent = post.meta.tag;
           tagEl.className = `px-3 py-1 rounded-full text-sm font-medium ${BlogEngine.getTagColor(post.meta.tag)}`;
           
-          // 显示封面图（如果有）
-          if (post.meta.cover && post.meta.cover.trim() !== '') {
-            const coverContainer = document.getElementById('articleCover');
-            const coverImage = document.getElementById('coverImage');
-            coverImage.src = post.meta.cover;
-            coverImage.alt = post.meta.title;
-            coverContainer.classList.remove('hidden');
-          }
-          
-          // 渲染文章内容
-          document.getElementById('articleContent').innerHTML = BlogEngine.markdownToHtml(post.content);
+          // 用 marked 渲染文章内容
+          document.getElementById('articleContent').innerHTML = marked.parse(post.content);
           
           // 代码高亮
           document.querySelectorAll('pre code').forEach(block => {
@@ -351,9 +355,7 @@
           categoryLink.href = `index.html#section${style.section}`;
           categoryLink.onclick = (e) => {
             e.preventDefault();
-            // 跳转到首页对应分类
             window.location.href = `index.html`;
-            // 存储要跳转的 section
             sessionStorage.setItem('goToSection', style.section);
           };
           

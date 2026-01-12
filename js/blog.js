@@ -18,56 +18,116 @@ async function loadPostsList() {
 
 // 解析 Markdown front matter
 function parseFrontMatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-  if (!match) return { meta: {}, content };
+  // 匹配 front matter：以 --- 开头和结尾
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!match) {
+    // 如果没有 front matter，返回原内容
+    return { meta: {}, content: content.trim() };
+  }
   
   const meta = {};
   match[1].split('\n').forEach(line => {
-    const [key, ...values] = line.split(':');
-    if (key && values.length) {
-      meta[key.trim()] = values.join(':').trim();
+    const colonIndex = line.indexOf(':');
+    if (colonIndex > 0) {
+      const key = line.substring(0, colonIndex).trim();
+      const value = line.substring(colonIndex + 1).trim();
+      if (key && value) {
+        meta[key] = value;
+      }
     }
   });
   
-  return { meta, content: match[2] };
+  // 返回去掉 front matter 后的内容
+  return { meta, content: match[2].trim() };
 }
 
 // 简单的 Markdown 转 HTML
 function markdownToHtml(md) {
-  return md
-    // 代码块 - 保留语言标识
-    .replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
-      const langClass = lang ? `language-${lang}` : '';
-      return `<pre><code class="${langClass}">${escapeHtml(code.trim())}</code></pre>`;
-    })
+  // 先处理代码块，避免内部内容被其他规则影响
+  const codeBlocks = [];
+  md = md.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
+    const index = codeBlocks.length;
+    const langClass = lang ? `language-${lang}` : '';
+    codeBlocks.push(`<pre><code class="${langClass}">${escapeHtml(code.trim())}</code></pre>`);
+    return `\n__CODE_BLOCK_${index}__\n`;
+  });
+
+  // 按双换行分割成块
+  const blocks = md.split(/\n\n+/);
+  
+  const htmlBlocks = blocks.map(block => {
+    block = block.trim();
+    if (!block) return '';
+    
+    // 代码块占位符
+    if (/^__CODE_BLOCK_\d+__$/.test(block)) {
+      return block;
+    }
+    
+    // 标题
+    if (/^#{1,3} /.test(block)) {
+      return block
+        .replace(/^### (.*)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.*)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.*)$/gm, '<h1>$1</h1>');
+    }
+    
+    // 无序列表 - 整块处理
+    if (/^- /.test(block)) {
+      const items = block.split('\n').map(line => {
+        const content = line.replace(/^- /, '');
+        return `<li>${processInline(content)}</li>`;
+      }).join('');
+      return `<ul>${items}</ul>`;
+    }
+    
+    // 有序列表 - 整块处理
+    if (/^\d+\. /.test(block)) {
+      const items = block.split('\n').map(line => {
+        const content = line.replace(/^\d+\. /, '');
+        return `<li>${processInline(content)}</li>`;
+      }).join('');
+      return `<ol>${items}</ol>`;
+    }
+    
+    // 引用块
+    if (/^> /.test(block)) {
+      const content = block.split('\n').map(line => line.replace(/^> ?/, '')).join('<br>');
+      return `<blockquote>${processInline(content)}</blockquote>`;
+    }
+    
+    // 水平线
+    if (/^---$/.test(block)) {
+      return '<hr>';
+    }
+    
+    // 普通段落
+    return `<p>${processInline(block.replace(/\n/g, '<br>'))}</p>`;
+  });
+
+  let html = htmlBlocks.join('\n');
+
+  // 还原代码块
+  codeBlocks.forEach((block, index) => {
+    html = html.replace(`__CODE_BLOCK_${index}__`, block);
+  });
+
+  return html;
+}
+
+// 处理行内元素
+function processInline(text) {
+  return text
     // 行内代码
     .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // 标题
-    .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-    .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-    .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-    // 粗体和斜体
+    // 粗体
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    // 斜体
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-    // 引用块
-    .replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>')
-    // 无序列表
-    .replace(/^\- (.*$)/gm, '<li>$1</li>')
-    // 有序列表
-    .replace(/^(\d+)\. (.*$)/gm, '<li>$2</li>')
-    // 水平线
-    .replace(/^---$/gm, '<hr>')
+    // 图片
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">')
     // 链接
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
-    // 段落 - 双换行变段落
-    .replace(/\n\n+/g, '</p><p>')
-    // 单换行变 br（在列表外）
-    .replace(/([^>])\n([^<])/g, '$1<br>$2')
-    // 包装成段落
-    .replace(/^(.+)$/gm, (match) => {
-      if (match.startsWith('<')) return match;
-      return match;
-    });
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
 }
 
 // HTML 转义，防止 XSS
