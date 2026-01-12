@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="50%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#d946ef"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8fafc"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#8b5cf6" flood-opacity="0.3"/>
+    </filter>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="50" cy="50" r="100" fill="#fff" opacity="0.1"/>
+  <circle cx="750" cy="450" r="150" fill="#fff" opacity="0.1"/>
+  <circle cx="400" cy="250" r="200" fill="#fff" opacity="0.05"/>
+  
+  <!-- Title -->
+  <text x="400" y="45" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="24" font-weight="bold">AI Agent 六大执行模式</text>
+  
+  <!-- Card 1: ReAct -->
+  <g transform="translate(40, 70)">
+    <rect width="230" height="130" rx="16" fill="url(#cardGrad)" filter="url(#softShadow)"/>
+    <rect x="10" y="10" width="50" height="50" rx="12" fill="#8b5cf6"/>
+    <text x="35" y="42" text-anchor="middle" fill="#fff" font-size="20">🔄</text>
+    <text x="75" y="35" fill="#1e293b" font-family="system-ui" font-size="16" font-weight="bold">ReAct</text>
+    <text x="75" y="52" fill="#64748b" font-family="system-ui" font-size="11">推理 + 行动循环</text>
+    
+    <!-- Flow -->
+    <g transform="translate(15, 70)">
+      <rect width="55" height="24" rx="6" fill="#ede9fe"/>
+      <text x="27" y="16" text-anchor="middle" fill="#7c3aed" font-size="10">Thought</text>
+    </g>
+    <text x="78" y="85" fill="#a855f7" font-size="14">→</text>
+    <g transform="translate(88, 70)">
+      <rect width="50" height="24" rx="6" fill="#ddd6fe"/>
+      <text x="25" y="16" text-anchor="middle" fill="#7c3aed" font-size="10">Action</text>
+    </g>
+    <text x="146" y="85" fill="#a855f7" font-size="14">→</text>
+    <g transform="translate(156, 70)">
+      <rect width="60" height="24" rx="6" fill="#c4b5fd"/>
+      <text x="30" y="16" text-anchor="middle" fill="#5b21b6" font-size="10">Observe</text>
+    </g>
+    <path d="M 186 98 Q 186 115 100 115 Q 15 115 15 98" stroke="#a855f7" stroke-width="2" fill="none" stroke-dasharray="4,2"/>
+    <polygon points="15,98 12,105 18,105" fill="#a855f7"/>
+  </g>
+  
+  <!-- Card 2: Plan-and-Execute -->
+  <g transform="translate(285, 70)">
+    <rect width="230" height="130" rx="16" fill="url(#cardGrad)" filter="url(#softShadow)"/>
+    <rect x="10" y="10" width="50" height="50" rx="12" fill="#3b82f6"/>
+    <text x="35" y="42" text-anchor="middle" fill="#fff" font-size="20">📋</text>
+    <text x="75" y="35" fill="#1e293b" font-family="system-ui" font-size="16" font-weight="bold">Plan-Execute</text>
+    <text x="75" y="52" fill="#64748b" font-family="system-ui" font-size="11">先规划后执行</text>
+    
+    <!-- Flow -->
+    <g transform="translate(15, 70)">
+      <rect width="60" height="45" rx="6" fill="#dbeafe"/>
+      <text x="30" y="18" text-anchor="middle" fill="#1d4ed8" font-size="9">Plan</text>
+      <text x="30" y="30" text-anchor="middle" fill="#3b82f6" font-size="8">1. Step A</text>
+      <text x="30" y="40" text-anchor="middle" fill="#3b82f6" font-size="8">2. Step B</text>
+    </g>
+    <text x="85" y="95" fill="#3b82f6" font-size="16">→</text>
+    <g transform="translate(100, 70)">
+      <rect width="115" height="45" rx="6" fill="#bfdbfe"/>
+      <text x="57" y="18" text-anchor="middle" fill="#1d4ed8" font-size="9">Execute</text>
+      <rect x="8" y="25" width="30" height="14" rx="3" fill="#3b82f6"/>
+      <text x="23" y="35" text-anchor="middle" fill="#fff" font-size="8">Do A</text>
+      <rect x="43" y="25" width="30" height="14" rx="3" fill="#3b82f6"/>
+      <text x="58" y="35" text-anchor="middle" fill="#fff" font-size="8">Do B</text>
+      <rect x="78" y="25" width="30" height="14" rx="3" fill="#60a5fa"/>
+      <text x="93" y="35" text-anchor="middle" fill="#fff" font-size="8">Do C</text>
+    </g>
+  </g>
+  
+  <!-- Card 3: Self-Ask -->
+  <g transform="translate(530, 70)">
+    <rect width="230" height="130" rx="16" fill="url(#cardGrad)" filter="url(#softShadow)"/>
+    <rect x="10" y="10" width="50" height="50" rx="12" fill="#10b981"/>
+    <text x="35" y="42" text-anchor="middle" fill="#fff" font-size="20">❓</text>
+    <text x="75" y="35" fill="#1e293b" font-family="system-ui" font-size="16" font-weight="bold">Self-Ask</text>
+    <text x="75" y="52" fill="#64748b" font-family="system-ui" font-size="11">自问自答分解</text>
+    
+    <!-- Flow -->
+    <g transform="translate(20, 68)">
+      <rect width="85" height="22" rx="6" fill="#d1fae5"/>
+      <text x="42" y="15" text-anchor="middle" fill="#047857" font-size="9">Q: 主问题?</text>
+    </g>
+    <path d="M 62 92 L 62 98 L 40 98" stroke="#10b981" stroke-width="1.5" fill="none"/>
+    <g transform="translate(20, 95)">
+      <rect width="75" height="18" rx="4" fill="#a7f3d0"/>
+      <text x="37" y="12" text-anchor="middle" fill="#047857" font-size="8">子问题 1 → 答案</text>
+    </g>
+    <g transform="translate(115, 68)">
+      <rect width="95" height="50" rx="6" fill="#6ee7b7"/>
+      <text x="47" y="15" text-anchor="middle" fill="#047857" font-size="9" font-weight="bold">综合答案</text>
+      <text x="47" y="30" text-anchor="middle" fill="#065f46" font-size="8">基于所有</text>
+      <text x="47" y="42" text-anchor="middle" fill="#065f46" font-size="8">子问题答案</text>
+    </g>
+  </g>
+  
+  <!-- Card 4: Tool-Use -->
+  <g transform="translate(40, 220)">
+    <rect width="230" height="130" rx="16" fill="url(#cardGrad)" filter="url(#softShadow)"/>
+    <rect x="10" y="10" width="50" height="50" rx="12" fill="#f59e0b"/>
+    <text x="35" y="42" text-anchor="middle" fill="#fff" font-size="20">🔧</text>
+    <text x="75" y="35" fill="#1e293b" font-family="system-ui" font-size="16" font-weight="bold">Tool-Use</text>
+    <text x="75" y="52" fill="#64748b" font-family="system-ui" font-size="11">工具调用模式</text>
+    
+    <!-- Agent center -->
+    <circle cx="115" cy="95" r="22" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+    <text x="115" y="100" text-anchor="middle" fill="#b45309" font-size="10" font-weight="bold">Agent</text>
+    
+    <!-- Tools -->
+    <g transform="translate(15, 75)">
+      <rect width="40" height="20" rx="4" fill="#fde68a"/>
+      <text x="20" y="14" text-anchor="middle" fill="#92400e" font-size="8">搜索</text>
+    </g>
+    <line x1="55" y1="85" x2="93" y2="90" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <g transform="translate(15, 100)">
+      <rect width="40" height="20" rx="4" fill="#fde68a"/>
+      <text x="20" y="14" text-anchor="middle" fill="#92400e" font-size="8">计算</text>
+    </g>
+    <line x1="55" y1="110" x2="93" y2="100" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <g transform="translate(175, 75)">
+      <rect width="40" height="20" rx="4" fill="#fde68a"/>
+      <text x="20" y="14" text-anchor="middle" fill="#92400e" font-size="8">代码</text>
+    </g>
+    <line x1="137" y1="90" x2="175" y2="85" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <g transform="translate(175, 100)">
+      <rect width="40" height="20" rx="4" fill="#fde68a"/>
+      <text x="20" y="14" text-anchor="middle" fill="#92400e" font-size="8">绘图</text>
+    </g>
+    <line x1="137" y1="100" x2="175" y2="110" stroke="#f59e0b" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Card 5: Reflection -->
+  <g transform="translate(285, 220)">
+    <rect width="230" height="130" rx="16" fill="url(#cardGrad)" filter="url(#softShadow)"/>
+    <rect x="10" y="10" width="50" height="50" rx="12" fill="#ec4899"/>
+    <text x="35" y="42" text-anchor="middle" fill="#fff" font-size="20">🪞</text>
+    <text x="75" y="35" fill="#1e293b" font-family="system-ui" font-size="16" font-weight="bold">Reflection</text>
+    <text x="75" y="52" fill="#64748b" font-family="system-ui" font-size="11">反思优化模式</text>
+    
+    <!-- Flow -->
+    <g transform="translate(20, 70)">
+      <rect width="55" height="40" rx="6" fill="#fce7f3"/>
+      <text x="27" y="18" text-anchor="middle" fill="#be185d" font-size="9">Generate</text>
+      <text x="27" y="32" text-anchor="middle" fill="#db2777" font-size="8">v1 输出</text>
+    </g>
+    <text x="83" y="93" fill="#ec4899" font-size="14">→</text>
+    <g transform="translate(93, 70)">
+      <rect width="50" height="40" rx="6" fill="#fbcfe8"/>
+      <text x="25" y="18" text-anchor="middle" fill="#be185d" font-size="9">Critique</text>
+      <text x="25" y="32" text-anchor="middle" fill="#db2777" font-size="8">评估</text>
+    </g>
+    <text x="151" y="93" fill="#ec4899" font-size="14">→</text>
+    <g transform="translate(161, 70)">
+      <rect width="50" height="40" rx="6" fill="#f9a8d4"/>
+      <text x="25" y="18" text-anchor="middle" fill="#9d174d" font-size="9">Revise</text>
+      <text x="25" y="32" text-anchor="middle" fill="#be185d" font-size="8">v2 ✓</text>
+    </g>
+    <path d="M 186 115 Q 115 130 45 115" stroke="#ec4899" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+    <text x="115" y="128" text-anchor="middle" fill="#be185d" font-size="8">迭代优化</text>
+  </g>
+  
+  <!-- Card 6: Multi-Agent -->
+  <g transform="translate(530, 220)">
+    <rect width="230" height="130" rx="16" fill="url(#cardGrad)" filter="url(#softShadow)"/>
+    <rect x="10" y="10" width="50" height="50" rx="12" fill="#6366f1"/>
+    <text x="35" y="42" text-anchor="middle" fill="#fff" font-size="20">👥</text>
+    <text x="75" y="35" fill="#1e293b" font-family="system-ui" font-size="16" font-weight="bold">Multi-Agent</text>
+    <text x="75" y="52" fill="#64748b" font-family="system-ui" font-size="11">多智能体协作</text>
+    
+    <!-- Supervisor -->
+    <circle cx="115" cy="82" r="18" fill="#c7d2fe" stroke="#6366f1" stroke-width="2"/>
+    <text x="115" y="86" text-anchor="middle" fill="#4338ca" font-size="8" font-weight="bold">监督者</text>
+    
+    <!-- Workers -->
+    <circle cx="50" cy="115" r="15" fill="#e0e7ff"/>
+    <text x="50" y="119" text-anchor="middle" fill="#4f46e5" font-size="7">设计</text>
+    <line x1="97" y1="95" x2="65" y2="105" stroke="#6366f1" stroke-width="1.5"/>
+    
+    <circle cx="115" cy="125" r="15" fill="#e0e7ff"/>
+    <text x="115" y="129" text-anchor="middle" fill="#4f46e5" font-size="7">开发</text>
+    <line x1="115" y1="100" x2="115" y2="110" stroke="#6366f1" stroke-width="1.5"/>
+    
+    <circle cx="180" cy="115" r="15" fill="#e0e7ff"/>
+    <text x="180" y="119" text-anchor="middle" fill="#4f46e5" font-size="7">测试</text>
+    <line x1="133" y1="95" x2="165" y2="105" stroke="#6366f1" stroke-width="1.5"/>
+    
+    <!-- Communication lines between workers -->
+    <line x1="65" y1="115" x2="100" y2="125" stroke="#a5b4fc" stroke-width="1" stroke-dasharray="2,2"/>
+    <line x1="130" y1="125" x2="165" y2="115" stroke="#a5b4fc" stroke-width="1" stroke-dasharray="2,2"/>
+  </g>
+  
+  <!-- Bottom summary -->
+  <g transform="translate(40, 370)">
+    <rect width="720" height="110" rx="20" fill="#fff" opacity="0.95" filter="url(#softShadow)"/>
+    <text x="360" y="30" text-anchor="middle" fill="#1e293b" font-family="system-ui" font-size="16" font-weight="bold">如何选择执行模式？</text>
+    
+    <g transform="translate(30, 45)">
+      <rect width="100" height="50" rx="8" fill="#ede9fe"/>
+      <text x="50" y="22" text-anchor="middle" fill="#6d28d9" font-size="10" font-weight="bold">简单任务</text>
+      <text x="50" y="38" text-anchor="middle" fill="#7c3aed" font-size="11">→ ReAct</text>
+    </g>
+    
+    <g transform="translate(145, 45)">
+      <rect width="100" height="50" rx="8" fill="#dbeafe"/>
+      <text x="50" y="22" text-anchor="middle" fill="#1d4ed8" font-size="10" font-weight="bold">复杂规划</text>
+      <text x="50" y="38" text-anchor="middle" fill="#3b82f6" font-size="11">→ Plan-Exec</text>
+    </g>
+    
+    <g transform="translate(260, 45)">
+      <rect width="100" height="50" rx="8" fill="#fef3c7"/>
+      <text x="50" y="22" text-anchor="middle" fill="#b45309" font-size="10" font-weight="bold">外部能力</text>
+      <text x="50" y="38" text-anchor="middle" fill="#d97706" font-size="11">→ Tool-Use</text>
+    </g>
+    
+    <g transform="translate(375, 45)">
+      <rect width="100" height="50" rx="8" fill="#fce7f3"/>
+      <text x="50" y="22" text-anchor="middle" fill="#be185d" font-size="10" font-weight="bold">高质量输出</text>
+      <text x="50" y="38" text-anchor="middle" fill="#db2777" font-size="11">→ Reflection</text>
+    </g>
+    
+    <g transform="translate(490, 45)">
+      <rect width="100" height="50" rx="8" fill="#d1fae5"/>
+      <text x="50" y="22" text-anchor="middle" fill="#047857" font-size="10" font-weight="bold">多跳推理</text>
+      <text x="50" y="38" text-anchor="middle" fill="#059669" font-size="11">→ Self-Ask</text>
+    </g>
+    
+    <g transform="translate(605, 45)">
+      <rect width="100" height="50" rx="8" fill="#e0e7ff"/>
+      <text x="50" y="22" text-anchor="middle" fill="#4338ca" font-size="10" font-weight="bold">大型项目</text>
+      <text x="50" y="38" text-anchor="middle" fill="#6366f1" font-size="11">→ Multi-Agent</text>
+    </g>
+  </g>
+</svg>

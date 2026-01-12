@@ -2,6 +2,7 @@
 
 // 文章列表配置（按日期倒序）
 const POSTS = [
+  'posts/2026-01-12-agent-patterns.md',
   'posts/2026-01-10-ai-design-trends.md',
   'posts/2026-01-08-vue4-features.md',
   'posts/2026-01-05-micro-interactions.md',
