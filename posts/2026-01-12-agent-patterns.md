@@ -9,6 +9,8 @@ readTime: 12
 
 AI Agent 正在重新定义人机交互的方式。本文将深入剖析 Agent 的六种核心执行模式，帮助你理解它们的工作原理和适用场景。
 
+![Agent 执行模式总览](images/posts/agent-execution-patterns.svg)
+
 ## 什么是 Agent？
 
 Agent（智能体）是一个能够感知环境、做出决策并采取行动的自主系统。与传统的"输入-输出"模型不同，Agent 具备：

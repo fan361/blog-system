@@ -294,15 +294,10 @@
 
   <script src="js/blog.js"></script>
   <script>
-    // 配置 marked - 禁用图片渲染
-    const renderer = new marked.Renderer();
-    renderer.image = function(href, title, text) {
-      return ''; // 不渲染图片
-    };
+    // 配置 marked
     marked.setOptions({
       breaks: true,
-      gfm: true,
-      renderer: renderer
+      gfm: true
     });
 
     // 分类颜色和链接映射
