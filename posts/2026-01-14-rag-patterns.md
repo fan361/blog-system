@@ -104,6 +104,8 @@ sub_queries = [
 
 检索后先评估文档质量，对低质量结果进行补救。
 
+<iframe src="./demos/corrective-rag-flow.html" width="100%" height="920" style="border: none; border-radius: 12px; margin: 16px 0;"></iframe>
+
 **流程：**
 1. 检索文档
 2. 评估每个文档的相关性（Correct / Ambiguous / Incorrect）
