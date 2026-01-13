@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>数据库路由组件可视化模拟</title>
+  <style>
+    :root {
+      --bg-color: #1e1e2e;
+      --text-color: #cdd6f4;
+      --accent-color: #89b4fa;
+      --master-color: #f38ba8;
+      --slave-color: #a6e3a1;
+      --router-color: #fab387;
+      --packet-write: #f38ba8;
+      --packet-read: #a6e3a1;
+      --offline-color: #585b70;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    h2 { margin-top: 0; }
+    .controls {
+      margin: 20px;
+      display: flex;
+      gap: 15px;
+      z-index: 100;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.1s;
+    }
+    button:active { transform: scale(0.95); }
+    .btn-write { background-color: var(--master-color); color: #111; }
+    .btn-read { background-color: var(--slave-color); color: #111; }
+    .btn-reset { background-color: var(--offline-color); color: white; }
+    .diagram-container {
+      position: relative;
+      width: 800px;
+      height: 500px;
+      border: 2px dashed #45475a;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 50px;
+    }
+    .entity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    #app-node {
+      width: 100px;
+      height: 80px;
+      background-color: #cba6f7;
+      color: #111;
+      font-weight: bold;
+    }
+    #router-node {
+      width: 140px;
+      height: 140px;
+      background-color: var(--router-color);
+      border-radius: 50%;
+      color: #111;
+      font-weight: bold;
+      z-index: 10;
+      border: 4px solid #fff;
+    }
+    #router-node::after {
+      content: "ShardingSphere / MyCat";
+      font-size: 10px;
+      opacity: 0.7;
+      margin-top: 5px;
+    }
+    .db-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .db-node {
+      width: 120px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #111;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .db-node:hover { border-color: white; }
+    .db-node.master { background-color: var(--master-color); }
+    .db-node.slave { background-color: var(--slave-color); }
+    .db-node.offline {
+      background-color: var(--offline-color);
+      color: #aaa;
+      text-decoration: line-through;
+      border: 2px solid red;
+    }
+    .badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+    .packet {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      z-index: 50;
+      box-shadow: 0 0 8px rgba(255,255,255,0.8);
+      transition: top 0.5s linear, left 0.5s linear;
+    }
+    .packet.write { background-color: var(--master-color); border: 2px solid white; }
+    .packet.read { background-color: var(--slave-color); border: 2px solid white; }
+    .logs {
+      margin-top: 20px;
+      width: 800px;
+      height: 120px;
+      background: #11111b;
+      border-radius: 5px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #a6adc8;
+      overflow-y: auto;
+      border: 1px solid #45475a;
+    }
+    .log-entry { margin-bottom: 5px; border-bottom: 1px solid #313244; padding-bottom: 2px; }
+    .highlight { color: var(--accent-color); }
+    .warn { color: #f9e2af; }
+    .error { color: #f38ba8; }
+  </style>
+</head>
+<body>
+  <h2>数据库路由组件可视演示</h2>
+  <p style="font-size: 14px; opacity: 0.7;">点击右侧数据库可模拟宕机/恢复</p>
+  <div class="controls">
+    <button class="btn-write" onclick="sendRequest('WRITE')">发送写请求 (INSERT)</button>
+    <button class="btn-read" onclick="sendRequest('READ')">发送读请求 (SELECT)</button>
+  </div>
+  <div class="diagram-container" id="container">
+    <div id="app-node" class="entity">APP应用<div class="badge">Sender</div></div>
+    <div id="router-node" class="entity">DB 路由组件<div class="badge">解析 & 分发</div></div>
+    <div class="db-cluster">
+      <div id="db-master" class="entity db-node master" onclick="toggleDbStatus('db-master')">Master (写)<div class="badge">Port: 3306</div></div>
+      <div id="db-slave1" class="entity db-node slave" onclick="toggleDbStatus('db-slave1')">Slave 1 (读)<div class="badge">Port: 3307</div></div>
+      <div id="db-slave2" class="entity db-node slave" onclick="toggleDbStatus('db-slave2')">Slave 2 (读)<div class="badge">Port: 3308</div></div>
+      <div id="db-slave3" class="entity db-node slave" onclick="toggleDbStatus('db-slave3')">Slave 3 (读)<div class="badge">Port: 3309</div></div>
+    </div>
+  </div>
+  <div class="logs" id="log-box">
+    <div class="log-entry">系统就绪... 等待请求。</div>
+  </div>
+  <script>
+    const dbStatus = {
+      'db-master': true,
+      'db-slave1': true,
+      'db-slave2': true,
+      'db-slave3': true
+    };
+    let slaveIndex = 0;
+
+    function log(message, type = 'info') {
+      const box = document.getElementById('log-box');
+      const entry = document.createElement('div');
+      entry.classList.add('log-entry');
+      if (type === 'warn') entry.classList.add('warn');
+      if (type === 'error') entry.classList.add('error');
+      const time = new Date().toLocaleTimeString();
+      entry.innerHTML = `[${time}] ${message}`;
+      box.prepend(entry);
+    }
+
+    function toggleDbStatus(id) {
+      const el = document.getElementById(id);
+      dbStatus[id] = !dbStatus[id];
+      if (dbStatus[id]) {
+        el.classList.remove('offline');
+        log(`${id} 已恢复上线`, 'info');
+      } else {
+        el.classList.add('offline');
+        log(`${id} 模拟宕机！`, 'error');
+      }
+    }
+
+    function getCenter(id) {
+      const el = document.getElementById(id);
+      const rect = el.getBoundingClientRect();
+      const containerRect = document.getElementById('container').getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2 - containerRect.left,
+        y: rect.top + rect.height / 2 - containerRect.top
+      };
+    }
+
+    function sendRequest(type) {
+      const container = document.getElementById('container');
+      const packet = document.createElement('div');
+      packet.classList.add('packet');
+      packet.classList.add(type === 'WRITE' ? 'write' : 'read');
+      const start = getCenter('app-node');
+      packet.style.left = (start.x - 8) + 'px';
+      packet.style.top = (start.y - 8) + 'px';
+      container.appendChild(packet);
+      log(`APP 发出 ${type} 请求...`);
+
+      setTimeout(() => {
+        const routerPos = getCenter('router-node');
+        packet.style.left = (routerPos.x - 8) + 'px';
+        packet.style.top = (routerPos.y - 8) + 'px';
+        setTimeout(() => {
+          handleRouting(type, packet);
+        }, 600);
+      }, 100);
+    }
+
+    function handleRouting(type, packet) {
+      let targetId = null;
+      let strategyLog = "";
+
+      if (type === 'WRITE') {
+        if (dbStatus['db-master']) {
+          targetId = 'db-master';
+          strategyLog = "识别为 INSERT -> 路由至主库";
+        } else {
+          log("错误：主库已宕机，写入失败！", 'error');
+          packet.remove();
+          return;
+        }
+      } else {
+        const slaves = ['db-slave1', 'db-slave2', 'db-slave3'];
+        let attempts = 0;
+        while (attempts < slaves.length) {
+          const currentSlaveId = slaves[slaveIndex % slaves.length];
+          slaveIndex++;
+          if (dbStatus[currentSlaveId]) {
+            targetId = currentSlaveId;
+            strategyLog = `识别为 SELECT -> 负载均衡 -> 路由至 ${currentSlaveId}`;
+            break;
+          } else {
+            log(`警告：${currentSlaveId} 宕机，自动切换至下一个节点...`, 'warn');
+          }
+          attempts++;
+        }
+        if (!targetId) {
+          if (dbStatus['db-master']) {
+            targetId = 'db-master';
+            strategyLog = "所有从库皆挂，强制路由至主库兜底";
+          } else {
+            log("错误：整个数据库集群不可用！", 'error');
+            packet.remove();
+            return;
+          }
+        }
+      }
+
+      log(strategyLog, 'highlight');
+      const targetPos = getCenter(targetId);
+      packet.style.left = (targetPos.x - 8) + 'px';
+      packet.style.top = (targetPos.y - 8) + 'px';
+
+      setTimeout(() => {
+        packet.style.transform = "scale(2)";
+        packet.style.opacity = "0";
+        const dbEl = document.getElementById(targetId);
+        dbEl.style.transform = "scale(1.1)";
+        setTimeout(() => dbEl.style.transform = "scale(1)", 200);
+        setTimeout(() => packet.remove(), 300);
+      }, 500);
+    }
+  </script>
+</body>
+</html>
