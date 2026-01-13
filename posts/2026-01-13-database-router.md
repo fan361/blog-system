@@ -79,4 +79,4 @@ readTime: 6
 
 下面是一个可视化的数据库路由模拟器，你可以点击按钮发送读/写请求，观察路由组件如何分发。还可以点击数据库节点模拟宕机，看看故障切换是怎么工作的：
 
-<iframe src="../demos/database-router-demo.html" width="100%" height="900" style="border: none; border-radius: 12px; margin-top: 1rem;"></iframe>
+<iframe src="demos/database-router-demo.html" width="100%" height="900" style="border: none; border-radius: 12px; margin-top: 1rem;"></iframe>
