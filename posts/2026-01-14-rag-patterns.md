@@ -32,7 +32,7 @@ RAG（Retrieval-Augmented Generation，检索增强生成）是当前 LLM 应用
   </p>
 </div>
 
-<iframe src="demos/naive-rag-flow.html" width="100%" height="750" style="border: none; border-radius: 12px; margin: 16px 0;"></iframe>
+<iframe src="./demos/naive-rag-flow.html" width="100%" height="750" style="border: none; border-radius: 12px; margin: 16px 0;"></iframe>
 
 ## 2. Query Rewriting（查询重写）
 

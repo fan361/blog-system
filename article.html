@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文章 | 灵感笔记</title>
+  <base href="./">
+  <title>文章 | 灵感博客</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,7 +201,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
           </svg>
         </div>
-        <span class="font-serif text-xl font-bold gradient-text hidden sm:block">灵感笔记</span>
+        <span class="font-serif text-xl font-bold gradient-text hidden sm:block">灵感博客</span>
       </a>
 
       <!-- 中间导航 -->
@@ -353,7 +354,7 @@
             sessionStorage.setItem('goToSection', style.section);
           };
           
-          document.title = post.meta.title + ' | 灵感笔记';
+          document.title = post.meta.title + ' | 灵感博客';
         }
       });
     }
