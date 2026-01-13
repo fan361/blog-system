@@ -30,17 +30,16 @@
     h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
     
     .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     
     .glass {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
 
     /* 导航链接动效 */
@@ -55,7 +54,7 @@
       position: absolute;
       inset: 0;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(236, 72, 153, 0.1));
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -63,11 +62,11 @@
       opacity: 1;
     }
     .nav-link:hover {
-      color: #7c3aed;
+      color: #6366f1;
     }
     .nav-link.active {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(236, 72, 153, 0.15));
-      color: #7c3aed;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+      color: #6366f1;
     }
     .nav-icon {
       width: 18px;
@@ -157,7 +156,7 @@
     /* 行内代码 */
     code:not(pre code) {
       background: #f1f5f9;
-      color: #7c3aed;
+      color: #6366f1;
       padding: 0.2rem 0.5rem;
       border-radius: 0.375rem;
       font-size: 0.875em;
@@ -174,29 +173,29 @@
     .article-content ul li { list-style-type: disc; }
     .article-content ol li { list-style-type: decimal; }
     .article-content blockquote {
-      border-left: 4px solid #a78bfa;
+      border-left: 4px solid #6366f1;
       padding: 1rem 1.5rem;
       margin: 1.5rem 0;
-      background: rgba(167, 139, 250, 0.08);
+      background: rgba(99, 102, 241, 0.08);
       border-radius: 0 0.5rem 0.5rem 0;
       color: #64748b;
       font-style: italic;
     }
     .article-content strong { font-weight: 600; color: #1e293b; }
-    .article-content a { color: #7c3aed; text-decoration: underline; }
-    .article-content a:hover { color: #6d28d9; }
+    .article-content a { color: #6366f1; text-decoration: underline; }
+    .article-content a:hover { color: #4f46e5; }
     .article-content hr { border: none; border-top: 1px solid #e2e8f0; margin: 2rem 0; }
     .article-content img { border-radius: 0.5rem; margin: 1.5rem 0; max-width: 100%; height: auto; display: block; }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 min-h-screen">
+<body class="bg-gradient-to-br from-slate-50 via-indigo-50 to-violet-50 min-h-screen">
   
   <!-- 导航栏 - 与首页一致 -->
   <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl mx-auto px-4">
-    <div class="glass rounded-2xl shadow-lg shadow-purple-500/10 px-6 py-3 flex items-center justify-between">
+    <div class="glass rounded-2xl shadow-lg shadow-indigo-500/10 px-6 py-3 flex items-center justify-between">
       <!-- Logo -->
       <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition-transform">
           <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
           </svg>
@@ -227,7 +226,7 @@
       </div>
 
       <!-- 订阅按钮 -->
-      <a href="index.html#subscribe" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer shadow-lg shadow-purple-500/30 hover:shadow-xl btn-bounce shimmer">
+      <a href="index.html#subscribe" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer shadow-lg shadow-indigo-500/30 hover:shadow-xl btn-bounce shimmer">
         订阅
       </a>
 
@@ -276,7 +275,7 @@
         
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white font-bold">
               你
             </div>
             <div>
@@ -284,7 +283,7 @@
               <p class="text-sm text-slate-500">热爱创造的开发者</p>
             </div>
           </div>
-          <a href="index.html" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full font-medium hover:shadow-lg transition-shadow">
+          <a href="index.html" class="px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full font-medium hover:shadow-lg transition-shadow">
             查看更多文章
           </a>
         </div>
@@ -302,9 +301,9 @@
 
     // 分类颜色和链接映射
     const categoryStyles = {
-      '精选': { bg: 'bg-purple-100', text: 'text-purple-700', section: 1 },
+      '精选': { bg: 'bg-indigo-100', text: 'text-indigo-700', section: 1 },
       '技术': { bg: 'bg-blue-100', text: 'text-blue-700', section: 3 },
-      '设计': { bg: 'bg-pink-100', text: 'text-pink-700', section: 3 },
+      '设计': { bg: 'bg-violet-100', text: 'text-violet-700', section: 3 },
       '生活': { bg: 'bg-teal-100', text: 'text-teal-700', section: 3 },
       '效率': { bg: 'bg-orange-100', text: 'text-orange-700', section: 3 },
       'AI': { bg: 'bg-sky-100', text: 'text-sky-700', section: 3 },

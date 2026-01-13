@@ -175,13 +175,13 @@ function formatDate(dateStr) {
 // 获取标签颜色
 function getTagColor(tag) {
   const colors = {
-    '精选': 'bg-purple-100 text-purple-700',
+    '精选': 'bg-indigo-100 text-indigo-700',
     '技术': 'bg-blue-100 text-blue-700',
-    '设计': 'bg-pink-100 text-pink-700',
+    '设计': 'bg-violet-100 text-violet-700',
     '生活': 'bg-teal-100 text-teal-700',
     '效率': 'bg-orange-100 text-orange-700',
     'AI': 'bg-sky-100 text-sky-700',
-    '思考': 'bg-indigo-100 text-indigo-700'
+    '思考': 'bg-purple-100 text-purple-700'
   };
   return colors[tag] || 'bg-slate-100 text-slate-700';
 }
@@ -221,7 +221,7 @@ function renderFeaturedCard(post, path, delayClass = '') {
       </div>
       <div class="p-5">
         <p class="text-slate-400 text-sm mb-2">${formatDate(meta.date)} · ${meta.readTime}分钟</p>
-        <h3 class="font-serif text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors line-clamp-2">
+        <h3 class="font-serif text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-2">
           ${meta.title}
         </h3>
       </div>
@@ -242,7 +242,7 @@ function renderArticleCard(post, path, delayClass = '') {
   const bgClass = hasCover ? '' : `bg-gradient-to-br ${gradient}`;
   
   return `
-    <a href="article.html?post=${path}" class="group bg-slate-50 rounded-xl overflow-hidden card-3d cursor-pointer border border-slate-100 reveal ${delayClass} block">
+    <a href="article.html?post=${path}" class="group bg-white rounded-xl overflow-hidden card-3d cursor-pointer border border-slate-200 reveal ${delayClass} block">
       <div class="aspect-[3/2] ${bgClass} relative overflow-hidden">
         ${coverHtml}
         <div class="absolute bottom-3 left-3 z-10">
@@ -251,7 +251,7 @@ function renderArticleCard(post, path, delayClass = '') {
       </div>
       <div class="p-4">
         <p class="text-slate-400 text-xs mb-1">${formatDate(meta.date)}</p>
-        <h3 class="font-serif text-base font-bold text-slate-800 group-hover:text-purple-600 transition-colors line-clamp-2">
+        <h3 class="font-serif text-base font-bold text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-2">
           ${meta.title}
         </h3>
       </div>

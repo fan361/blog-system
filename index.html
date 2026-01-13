@@ -33,7 +33,7 @@
 
     /* Aurora 流动背景 */
     .aurora-bg {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 25%, #a78bfa 50%, #c4b5fd 75%, #6366f1 100%);
       background-size: 400% 400%;
       animation: aurora 15s ease infinite;
     }
@@ -44,10 +44,9 @@
 
     /* 毛玻璃卡片 */
     .glass {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
     .glass-dark {
       background: rgba(255, 255, 255, 0.1);
@@ -58,7 +57,7 @@
 
     /* 渐变文字 */
     .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -70,7 +69,7 @@
     }
     .card-hover:hover {
       transform: translateY(-8px);
-      box-shadow: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
+      box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.2);
     }
 
     /* 文字截断 */
@@ -102,8 +101,8 @@
 
     /* 标签样式 */
     .tag {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
-      border: 1px solid rgba(102, 126, 234, 0.3);
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
     }
 
     /* 导航链接动效 */
@@ -118,7 +117,7 @@
       position: absolute;
       inset: 0;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(236, 72, 153, 0.1));
+      background: rgba(99, 102, 241, 0.1);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -126,11 +125,11 @@
       opacity: 1;
     }
     .nav-link:hover {
-      color: #7c3aed;
+      color: #6366f1;
     }
     .nav-link.active {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(236, 72, 153, 0.15));
-      color: #7c3aed;
+      background: rgba(99, 102, 241, 0.1);
+      color: #6366f1;
     }
 
     /* 导航图标 */
@@ -151,8 +150,8 @@
     }
     .search-box:focus-within {
       background: rgba(255, 255, 255, 0.9);
-      border-color: #a78bfa;
-      box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
     }
 
     /* 丝滑滚动 */
@@ -166,7 +165,7 @@
     }
     .navbar.scrolled {
       background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.1);
     }
 
     /* 滚动触发动画 - 使用 animation 替代 transition */
@@ -279,7 +278,7 @@
       top: 0;
       left: 0;
       height: 3px;
-      background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+      background: linear-gradient(90deg, #6366f1, #8b5cf6, #a78bfa);
       z-index: 9999;
       transform-origin: left;
       transform: scaleX(0);
@@ -291,7 +290,7 @@
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(102, 126, 234, 0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
       transform: translate(-50%, -50%);
@@ -423,10 +422,10 @@
       background: rgba(255, 255, 255, 0.5);
     }
     .page-dot.active {
-      background: linear-gradient(135deg, #667eea, #f093fb);
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
       border-color: white;
       transform: scale(1.3);
-      box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
     }
     .page-dot.dark {
       background: rgba(0, 0, 0, 0.2);
@@ -436,8 +435,8 @@
       background: rgba(0, 0, 0, 0.4);
     }
     .page-dot.dark.active {
-      background: linear-gradient(135deg, #667eea, #f093fb);
-      border-color: #667eea;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-color: #6366f1;
     }
     .page-dot.dark::before {
       color: white;
@@ -504,10 +503,10 @@
 
   <!-- 全局导航栏 -->
   <nav class="navbar fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl mx-auto px-4">
-    <div class="glass rounded-2xl shadow-lg shadow-purple-500/10 px-6 py-3 flex items-center justify-between">
+    <div class="glass rounded-2xl shadow-lg shadow-indigo-500/10 px-6 py-3 flex items-center justify-between">
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3 cursor-pointer group" onclick="goToSection(0)">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition-transform">
           <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
           </svg>
@@ -538,7 +537,7 @@
       </div>
 
       <!-- 订阅按钮 -->
-      <a href="#subscribe" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer shadow-lg shadow-purple-500/30 hover:shadow-xl btn-bounce shimmer ripple">
+      <a href="#subscribe" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer shadow-lg shadow-indigo-500/30 hover:shadow-xl btn-bounce shimmer ripple">
         订阅
       </a>
 
@@ -558,9 +557,9 @@
       <!-- Section 1: Hero -->
       <section class="fullpage-section aurora-bg relative" data-section="0">
     <!-- 装饰性浮动球 -->
-    <div class="floating-orb w-96 h-96 bg-pink-400 top-20 -left-48 parallax" style="animation-delay: 0s;"></div>
-    <div class="floating-orb w-80 h-80 bg-purple-500 top-40 right-10 parallax" style="animation-delay: 2s;"></div>
-    <div class="floating-orb w-64 h-64 bg-blue-400 bottom-20 left-1/3 parallax" style="animation-delay: 4s;"></div>
+    <div class="floating-orb w-96 h-96 bg-indigo-400 top-20 -left-48 parallax" style="animation-delay: 0s;"></div>
+    <div class="floating-orb w-80 h-80 bg-violet-500 top-40 right-10 parallax" style="animation-delay: 2s;"></div>
+    <div class="floating-orb w-64 h-64 bg-purple-400 bottom-20 left-1/3 parallax" style="animation-delay: 4s;"></div>
 
     <!-- Hero Content -->
     <section id="home" class="min-h-screen flex items-center justify-center px-4 pt-24 relative z-10">
@@ -578,7 +577,7 @@
           关于技术、设计、生活，以及一切美好的事物。
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center fade-up" style="animation-delay: 0.8s;">
-          <a href="#articles" class="inline-flex items-center justify-center gap-2 bg-white text-purple-700 px-8 py-4 rounded-full font-semibold transition-all cursor-pointer shadow-xl btn-bounce ripple shimmer">
+          <a href="#articles" class="inline-flex items-center justify-center gap-2 bg-white text-indigo-700 px-8 py-4 rounded-full font-semibold transition-all cursor-pointer shadow-xl btn-bounce ripple shimmer">
             开始探索
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
@@ -632,7 +631,7 @@
     <div class="w-full relative z-10">
       <div class="max-w-5xl mx-auto px-8">
         <div class="text-center mb-8 reveal">
-          <span class="text-purple-600 font-semibold text-sm tracking-wider uppercase">Latest Posts</span>
+          <span class="text-indigo-600 font-semibold text-sm tracking-wider uppercase">Latest Posts</span>
           <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-2 text-slate-800">最新文章</h2>
         </div>
         
@@ -641,7 +640,7 @@
         </div>
 
         <div class="text-center mt-8 reveal">
-          <a href="posts.html" class="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full text-purple-600 font-medium shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer">
+          <a href="posts.html" class="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full text-indigo-600 font-medium shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-pointer">
             查看全部文章
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -653,22 +652,22 @@
   </section>
 
   <!-- Section 3: 订阅区域 -->
-  <section class="fullpage-section bg-gradient-to-br from-purple-100 via-pink-50 to-rose-100 flex items-center relative overflow-hidden" data-section="2">
+  <section class="fullpage-section bg-gradient-to-br from-indigo-100 via-violet-50 to-purple-100 flex items-center relative overflow-hidden" data-section="2">
     <!-- 装饰元素 -->
-    <div class="floating-orb w-72 h-72 bg-purple-200 top-10 -right-20" style="animation-delay: 0.5s;"></div>
-    <div class="floating-orb w-56 h-56 bg-rose-200 -bottom-10 left-10" style="animation-delay: 2.5s;"></div>
-    <div class="absolute top-1/3 left-12 w-16 h-16 border-2 border-pink-300 rounded-full opacity-40"></div>
-    <div class="absolute bottom-1/4 right-20 w-12 h-12 bg-gradient-to-br from-purple-400 to-rose-400 rounded-2xl rotate-12 opacity-20"></div>
-    <div class="absolute top-20 left-1/3 w-4 h-4 bg-pink-400 rounded-full opacity-50"></div>
+    <div class="floating-orb w-72 h-72 bg-indigo-200 top-10 -right-20" style="animation-delay: 0.5s;"></div>
+    <div class="floating-orb w-56 h-56 bg-violet-200 -bottom-10 left-10" style="animation-delay: 2.5s;"></div>
+    <div class="absolute top-1/3 left-12 w-16 h-16 border-2 border-indigo-300 rounded-full opacity-40"></div>
+    <div class="absolute bottom-1/4 right-20 w-12 h-12 bg-gradient-to-br from-indigo-400 to-violet-400 rounded-2xl rotate-12 opacity-20"></div>
+    <div class="absolute top-20 left-1/3 w-4 h-4 bg-indigo-400 rounded-full opacity-50"></div>
     <div class="w-full px-4 relative z-10">
       <div class="max-w-4xl mx-auto reveal-scale">
         <div class="relative overflow-hidden rounded-[2.5rem] aurora-bg p-1">
           <div class="bg-white rounded-[2.25rem] p-8 sm:p-12 text-center relative overflow-hidden">
-            <div class="floating-orb w-64 h-64 bg-purple-300 -top-32 -right-32" style="filter: blur(80px); opacity: 0.4;"></div>
-            <div class="floating-orb w-48 h-48 bg-pink-300 -bottom-24 -left-24" style="filter: blur(60px); opacity: 0.4;"></div>
+            <div class="floating-orb w-64 h-64 bg-indigo-300 -top-32 -right-32" style="filter: blur(80px); opacity: 0.4;"></div>
+            <div class="floating-orb w-48 h-48 bg-violet-300 -bottom-24 -left-24" style="filter: blur(60px); opacity: 0.4;"></div>
             
             <div class="relative z-10">
-              <span class="inline-block px-4 py-1.5 bg-purple-100 text-purple-700 text-sm font-semibold rounded-full mb-6">Newsletter</span>
+              <span class="inline-block px-4 py-1.5 bg-indigo-100 text-indigo-700 text-sm font-semibold rounded-full mb-6">Newsletter</span>
               <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-4 text-slate-800">订阅我的周刊</h2>
               <p class="text-slate-500 mb-8 max-w-lg mx-auto">
                 每周精选文章、工具推荐和独家思考，直达你的邮箱。
@@ -677,10 +676,10 @@
                 <input 
                 type="email" 
                 placeholder="your@email.com" 
-                class="flex-1 px-6 py-4 bg-slate-100 border-2 border-transparent rounded-full text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-purple-500 focus:bg-white transition-all"
+                class="flex-1 px-6 py-4 bg-slate-100 border-2 border-transparent rounded-full text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition-all"
                 aria-label="邮箱地址"
               >
-              <button type="submit" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white rounded-full font-semibold transition-all cursor-pointer shadow-lg shadow-purple-500/30 whitespace-nowrap btn-bounce ripple shimmer">
+              <button type="submit" class="px-8 py-4 bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white rounded-full font-semibold transition-all cursor-pointer shadow-lg shadow-indigo-500/30 whitespace-nowrap btn-bounce ripple shimmer">
                 立即订阅
               </button>
             </form>
@@ -693,31 +692,31 @@
   </section>
 
   <!-- Section 4: 关于我 -->
-  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 flex items-center relative overflow-hidden" data-section="3">
+  <section class="fullpage-section bg-gradient-to-br from-slate-50 via-indigo-50 to-violet-50 flex items-center relative overflow-hidden" data-section="3">
     <!-- 装饰元素 -->
-    <div class="floating-orb w-64 h-64 bg-emerald-200 -top-20 right-1/4" style="animation-delay: 2s;"></div>
-    <div class="floating-orb w-52 h-52 bg-teal-200 bottom-32 -left-16" style="animation-delay: 4s;"></div>
-    <div class="absolute top-24 left-16 w-12 h-12 border-2 border-emerald-300 rounded-lg rotate-12 opacity-40"></div>
-    <div class="absolute top-1/3 right-12 w-8 h-8 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full opacity-30"></div>
-    <div class="absolute bottom-1/2 right-1/4 w-20 h-1 bg-gradient-to-r from-teal-300 to-transparent rounded-full opacity-40"></div>
+    <div class="floating-orb w-64 h-64 bg-indigo-200 -top-20 right-1/4" style="animation-delay: 2s;"></div>
+    <div class="floating-orb w-52 h-52 bg-violet-200 bottom-32 -left-16" style="animation-delay: 4s;"></div>
+    <div class="absolute top-24 left-16 w-12 h-12 border-2 border-indigo-300 rounded-lg rotate-12 opacity-40"></div>
+    <div class="absolute top-1/3 right-12 w-8 h-8 bg-gradient-to-br from-indigo-400 to-violet-400 rounded-full opacity-30"></div>
+    <div class="absolute bottom-1/2 right-1/4 w-20 h-1 bg-gradient-to-r from-violet-300 to-transparent rounded-full opacity-40"></div>
     <div class="w-full px-4 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <div class="reveal">
-          <span class="text-purple-600 font-semibold text-sm tracking-wider uppercase">About Me</span>
+          <span class="text-indigo-600 font-semibold text-sm tracking-wider uppercase">About Me</span>
           <h2 class="font-serif text-4xl sm:text-5xl font-bold mt-2 mb-6 text-slate-800">你好，我是...</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
             一个热爱创造的开发者。专注于后端开发和 AI 应用，擅长用技术解决实际问题。
           </p>
           
           <div class="flex flex-wrap justify-center gap-3 mb-8">
-            <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Python</span>
+            <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Python</span>
             <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Java</span>
-            <span class="px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">LLM / Agent</span>
+            <span class="px-4 py-2 bg-violet-100 text-violet-700 rounded-full text-sm font-medium">LLM / Agent</span>
             <span class="px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">RAG</span>
           </div>
 
           <div class="flex justify-center gap-4 mb-8">
-            <a href="about.html" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all cursor-pointer hover:-translate-y-1">
+            <a href="about.html" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all cursor-pointer hover:-translate-y-1">
               查看完整简历
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -726,12 +725,12 @@
           </div>
 
           <div class="flex justify-center gap-4">
-            <a href="#" class="w-12 h-12 bg-slate-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all cursor-pointer icon-spin pulse-ring" aria-label="GitHub">
+            <a href="#" class="w-12 h-12 bg-slate-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-all cursor-pointer icon-spin pulse-ring" aria-label="GitHub">
               <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
             </a>
-            <a href="#" class="w-12 h-12 bg-slate-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all cursor-pointer icon-spin pulse-ring" aria-label="Email">
+            <a href="#" class="w-12 h-12 bg-slate-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-all cursor-pointer icon-spin pulse-ring" aria-label="Email">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
@@ -760,7 +759,7 @@
   <!-- 返回顶部 -->
   <button 
     onclick="goToSection(0)"
-    class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full shadow-lg shadow-purple-500/40 flex items-center justify-center transition-all cursor-pointer z-40 hover:scale-110 hover:shadow-xl btn-bounce opacity-0 translate-y-10"
+    class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full shadow-lg shadow-indigo-500/40 flex items-center justify-center transition-all cursor-pointer z-40 hover:scale-110 hover:shadow-xl btn-bounce opacity-0 translate-y-10"
     id="backToTop"
     aria-label="返回顶部"
   >
@@ -1030,7 +1029,7 @@
             </div>
             <div class="p-4">
               <p class="text-slate-400 text-xs mb-1">${BlogEngine.formatDate(meta.date)}</p>
-              <h3 class="font-serif text-base font-bold text-slate-800 group-hover:text-purple-600 transition-colors line-clamp-2">
+              <h3 class="font-serif text-base font-bold text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-2">
                 ${meta.title}
               </h3>
             </div>

@@ -25,17 +25,16 @@
     h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
     
     .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     
     .glass {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     }
 
     .floating-orb {
@@ -63,7 +62,7 @@
     }
     .project-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
     }
 
     .highlight-card {
@@ -85,7 +84,7 @@
       position: absolute;
       inset: 0;
       border-radius: 12px;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(236, 72, 153, 0.1));
+      background: rgba(99, 102, 241, 0.1);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -93,11 +92,11 @@
       opacity: 1;
     }
     .nav-link:hover {
-      color: #7c3aed;
+      color: #6366f1;
     }
     .nav-link.active {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(236, 72, 153, 0.15));
-      color: #7c3aed;
+      background: rgba(99, 102, 241, 0.1);
+      color: #6366f1;
     }
     .nav-icon {
       width: 18px;
@@ -155,21 +154,21 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 min-h-screen">
+<body class="bg-gray-50 min-h-screen">
   
   <!-- 装饰元素 -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none">
-    <div class="floating-orb w-96 h-96 bg-purple-300 -top-48 -right-48" style="animation-delay: 0s;"></div>
-    <div class="floating-orb w-80 h-80 bg-pink-300 bottom-20 -left-40" style="animation-delay: 2s;"></div>
-    <div class="floating-orb w-64 h-64 bg-blue-300 top-1/3 right-1/4" style="animation-delay: 4s;"></div>
+    <div class="floating-orb w-96 h-96 bg-indigo-200 -top-48 -right-48" style="animation-delay: 0s;"></div>
+    <div class="floating-orb w-80 h-80 bg-violet-200 bottom-20 -left-40" style="animation-delay: 2s;"></div>
+    <div class="floating-orb w-64 h-64 bg-purple-200 top-1/3 right-1/4" style="animation-delay: 4s;"></div>
   </div>
 
   <!-- 导航栏 - 与首页一致 -->
   <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl mx-auto px-4">
-    <div class="glass rounded-2xl shadow-lg shadow-purple-500/10 px-6 py-3 flex items-center justify-between">
+    <div class="glass rounded-2xl shadow-lg shadow-indigo-500/10 px-6 py-3 flex items-center justify-between">
       <!-- Logo -->
       <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition-transform">
           <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
           </svg>
@@ -200,7 +199,7 @@
       </div>
 
       <!-- 订阅按钮 -->
-      <a href="index.html#subscribe" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer shadow-lg shadow-purple-500/30 hover:shadow-xl btn-bounce shimmer">
+      <a href="index.html#subscribe" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all cursor-pointer shadow-lg shadow-indigo-500/30 hover:shadow-xl btn-bounce shimmer">
         订阅
       </a>
 
@@ -224,19 +223,19 @@
             <img src="images/avatar.jpg" alt="头像" class="w-full h-full object-cover">
           </div>
           <div>
-            <span class="text-purple-600 font-semibold text-sm tracking-wider uppercase">About Me</span>
+            <span class="text-indigo-600 font-semibold text-sm tracking-wider uppercase">About Me</span>
             <h1 class="font-serif text-4xl font-bold mt-1 mb-4 text-slate-800">后端开发工程师</h1>
             <p class="text-slate-600 text-lg leading-relaxed mb-6">
               热爱技术，专注于后端开发和 AI 应用。擅长用 Python 和 Java 构建高性能系统，
               对 LLM、Agent、RAG 等 AI 技术有深入研究和实践经验。
             </p>
             <div class="flex gap-4">
-              <a href="#" class="w-11 h-11 bg-slate-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all cursor-pointer" aria-label="GitHub">
+              <a href="#" class="w-11 h-11 bg-slate-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-all cursor-pointer" aria-label="GitHub">
                 <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                 </svg>
               </a>
-              <a href="#" class="w-11 h-11 bg-slate-800 hover:bg-purple-600 rounded-full flex items-center justify-center transition-all cursor-pointer" aria-label="Email">
+              <a href="#" class="w-11 h-11 bg-slate-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-all cursor-pointer" aria-label="Email">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
@@ -268,8 +267,8 @@
           
           <!-- 数据库 -->
           <div class="bg-white rounded-2xl p-6 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center mb-4">
-              <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
               </svg>
             </div>
@@ -284,16 +283,16 @@
           
           <!-- AI -->
           <div class="bg-white rounded-2xl p-6 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
-              <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
             </div>
             <h3 class="font-semibold text-slate-800 mb-3">AI / LLM</h3>
             <div class="flex flex-wrap gap-2">
-              <span class="skill-tag px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm">LangChain</span>
-              <span class="skill-tag px-3 py-1 bg-pink-50 text-pink-700 rounded-full text-sm">RAG</span>
-              <span class="skill-tag px-3 py-1 bg-violet-50 text-violet-700 rounded-full text-sm">Agent</span>
+              <span class="skill-tag px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-sm">LangChain</span>
+              <span class="skill-tag px-3 py-1 bg-violet-50 text-violet-700 rounded-full text-sm">RAG</span>
+              <span class="skill-tag px-3 py-1 bg-purple-50 text-purple-700 rounded-full text-sm">Agent</span>
               <span class="skill-tag px-3 py-1 bg-cyan-50 text-cyan-700 rounded-full text-sm">pgvector</span>
             </div>
           </div>
@@ -309,7 +308,7 @@
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                   </svg>
@@ -337,9 +336,9 @@
           
           <!-- 项目亮点 -->
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-            <div class="highlight-card bg-gradient-to-br from-violet-50 to-purple-50 rounded-xl p-4 border border-violet-100">
+            <div class="highlight-card bg-gradient-to-br from-indigo-50 to-violet-50 rounded-xl p-4 border border-indigo-100">
               <div class="flex items-center gap-2 mb-2">
-                <span class="w-6 h-6 rounded-full bg-violet-500 text-white text-xs flex items-center justify-center font-bold">1</span>
+                <span class="w-6 h-6 rounded-full bg-indigo-500 text-white text-xs flex items-center justify-center font-bold">1</span>
                 <h4 class="font-semibold text-slate-800 text-sm">主动监控</h4>
               </div>
               <p class="text-slate-600 text-xs leading-relaxed">subprocess 包装进程，实时检测 ERROR 自动触发诊断</p>
@@ -353,9 +352,9 @@
               <p class="text-slate-600 text-xs leading-relaxed">统计+采样+优先级压缩，98% 压缩率解决 Token 限制</p>
             </div>
             
-            <div class="highlight-card bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-100">
+            <div class="highlight-card bg-gradient-to-br from-indigo-50 to-violet-50 rounded-xl p-4 border border-indigo-100">
               <div class="flex items-center gap-2 mb-2">
-                <span class="w-6 h-6 rounded-full bg-emerald-500 text-white text-xs flex items-center justify-center font-bold">3</span>
+                <span class="w-6 h-6 rounded-full bg-indigo-500 text-white text-xs flex items-center justify-center font-bold">3</span>
                 <h4 class="font-semibold text-slate-800 text-sm">多源融合</h4>
               </div>
               <p class="text-slate-600 text-xs leading-relaxed">ES 日志 + Prometheus 指标 + 源码上下文联合分析</p>
@@ -369,15 +368,15 @@
               <p class="text-slate-600 text-xs leading-relaxed">CLI/API/Stream 三种模式复用同一核心引擎</p>
             </div>
             
-            <div class="highlight-card bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-100">
+            <div class="highlight-card bg-gradient-to-br from-violet-50 to-purple-50 rounded-xl p-4 border border-violet-100">
               <div class="flex items-center gap-2 mb-2">
-                <span class="w-6 h-6 rounded-full bg-pink-500 text-white text-xs flex items-center justify-center font-bold">5</span>
+                <span class="w-6 h-6 rounded-full bg-violet-500 text-white text-xs flex items-center justify-center font-bold">5</span>
                 <h4 class="font-semibold text-slate-800 text-sm">RAG 案例检索</h4>
               </div>
               <p class="text-slate-600 text-xs leading-relaxed">pgvector 向量检索历史案例，相似问题快速复用</p>
             </div>
             
-            <div class="highlight-card bg-gradient-to-br from-indigo-50 to-violet-50 rounded-xl p-4 border border-indigo-100">
+            <div class="highlight-card bg-gradient-to-br from-purple-50 to-fuchsia-50 rounded-xl p-4 border border-purple-100">
               <div class="flex items-center gap-2 mb-2">
                 <span class="w-6 h-6 rounded-full bg-indigo-500 text-white text-xs flex items-center justify-center font-bold">6</span>
                 <h4 class="font-semibold text-slate-800 text-sm">多语言解析</h4>
@@ -392,7 +391,7 @@
       <section class="text-center">
         <h2 class="font-serif text-2xl font-bold mb-4 text-slate-800">联系我</h2>
         <p class="text-slate-600 mb-6">如果你对我的项目感兴趣，或者有合作机会，欢迎联系！</p>
-        <a href="mailto:your@email.com" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+        <a href="mailto:your@email.com" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
